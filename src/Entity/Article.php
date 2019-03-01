@@ -24,13 +24,14 @@ class Article
     private $designation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CategorieArticle", mappedBy="Article")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="categorie", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $categorieArticles;
+    private $categorie;
 
     public function __construct()
     {
-        $this->categorieArticles = new ArrayCollection();
+        //$this->categorie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,34 +51,39 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|CategorieArticle[]
-     */
-    public function getCategorieArticles(): Collection
+    public function getCategorie(): ?self
     {
-        return $this->categorieArticles;
+        return $this->categorie;
     }
 
-    public function addCategorieArticle(CategorieArticle $categorieArticle): self
+    public function setCategorie(?self $categorie)  
     {
-        if (!$this->categorieArticles->contains($categorieArticle)) {
-            $this->categorieArticles[] = $categorieArticle;
-            $categorieArticle->setArticle($this);
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function addCategorie(self $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+            $categorie->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeCategorieArticle(CategorieArticle $categorieArticle): self
+    public function removeCategorie(self $categorie): self
     {
-        if ($this->categorieArticles->contains($categorieArticle)) {
-            $this->categorieArticles->removeElement($categorieArticle);
+        if ($this->categorie->contains($categorie)) {
+            $this->categorie->removeElement($categorie);
             // set the owning side to null (unless already changed)
-            if ($categorieArticle->getArticle() === $this) {
-                $categorieArticle->setArticle(null);
+            if ($categorie->getCategorie() === $this) {
+                $categorie->setCategorie(null);
             }
         }
 
         return $this;
     }
+
 }

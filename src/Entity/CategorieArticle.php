@@ -17,43 +17,47 @@ class CategorieArticle
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="categorieArticles")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Categorie;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="categorieArticles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Article;
+    private $article;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="categorieArticles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCategorie(): ?Categorie
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(?Categorie $Categorie): self
-    {
-        $this->Categorie = $Categorie;
-
-        return $this;
-    }
-
     public function getArticle(): ?Article
     {
-        return $this->Article;
+        return $this->article;
     }
 
-    public function setArticle(?Article $Article): self
+    public function setArticle(?Article $article): self
     {
-        $this->Article = $Article;
+        $this->article = $article;
 
         return $this;
     }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+
 }

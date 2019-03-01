@@ -23,14 +23,9 @@ class Categorie
      */
     private $categorie;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CategorieArticle", mappedBy="Categorie")
-     */
-    private $categorieArticles;
-
     public function __construct()
     {
-        $this->categorieArticles = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -50,34 +45,8 @@ class Categorie
         return $this;
     }
 
-    /**
-     * @return Collection|CategorieArticle[]
-     */
-    public function getCategorieArticles(): Collection
+    public function __toString()
     {
-        return $this->categorieArticles;
-    }
-
-    public function addCategorieArticle(CategorieArticle $categorieArticle): self
-    {
-        if (!$this->categorieArticles->contains($categorieArticle)) {
-            $this->categorieArticles[] = $categorieArticle;
-            $categorieArticle->setCategorie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategorieArticle(CategorieArticle $categorieArticle): self
-    {
-        if ($this->categorieArticles->contains($categorieArticle)) {
-            $this->categorieArticles->removeElement($categorieArticle);
-            // set the owning side to null (unless already changed)
-            if ($categorieArticle->getCategorie() === $this) {
-                $categorieArticle->setCategorie(null);
-            }
-        }
-
-        return $this;
+        return $this->categorie;
     }
 }
