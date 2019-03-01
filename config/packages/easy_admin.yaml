@@ -1,0 +1,22 @@
+#easy_admin:
+    #entities:
+#        # List the entity class name you want to manage
+        #- App\Entity\Article
+        #- App\Entity\Categorie
+#        - App\Entity\User
+
+# config/packages/easy_admin.yaml
+easy_admin:
+    entities:
+        Article:
+            class: App\Entity\Article
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                    - { property: 'designation', type: 'text', label: 'Designation' }
+                    - { property: 'categorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' } }
+                    #- { property: 'categorie', type: 'App\Form\ArticleType' , label : false }
+
+
+
+        Categorie:
+            class: App\Entity\Categorie
