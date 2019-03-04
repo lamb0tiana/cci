@@ -22,7 +22,10 @@ class Article
      */
     private $name;
 
-    
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $content;
     /**
      * @ORM\Column(type="datetime")
      */
@@ -81,6 +84,18 @@ class Article
     public function onPrepersist()
     {
         $this->created_at = new \DateTime();
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
         return $this;
     }
 }

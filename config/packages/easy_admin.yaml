@@ -14,6 +14,7 @@ easy_admin:
                 fields:
                     - { property: 'name', type: 'text', label: "Nom de l'article" }
                     - { property: 'categorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' } }
+                    - { property: 'content', type: 'fos_ckeditor', label: "Contenu de l'article" }
 
         Categorie:
             class: App\Entity\Categorie
