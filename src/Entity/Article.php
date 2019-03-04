@@ -23,41 +23,11 @@ class Article
      */
     private $designation;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $historique;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $contact;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $autre_contact;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $reclamation;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie")
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
-    
-    public function __construct()
-    {
-
-    }
 
     public function getId(): ?int
     {
@@ -76,64 +46,10 @@ class Article
         return $this;
     }
 
-    public function getHistorique(): ?string
+
+    public function __toString()
     {
-        return $this->historique;
-    }
-
-    public function setHistorique(string $historique): self
-    {
-        $this->historique = $historique;
-
-        return $this;
-    }
-
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getAutreContact(): ?string
-    {
-        return $this->autre_contact;
-    }
-
-    public function setAutreContact(?string $autre_contact): self
-    {
-        $this->autre_contact = $autre_contact;
-
-        return $this;
-    }
-
-    public function getReclamation(): ?string
-    {
-        return $this->reclamation;
-    }
-
-    public function setReclamation(?string $reclamation): self
-    {
-        $this->reclamation = $reclamation;
-
-        return $this;
+        return $this->designation;
     }
 
     public function getCategorie(): ?Categorie
@@ -147,5 +63,4 @@ class Article
 
         return $this;
     }
-
 }
