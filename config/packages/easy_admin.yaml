@@ -12,13 +12,11 @@ easy_admin:
             class: App\Entity\Article
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
                 fields:
-                    - { property: 'designation', type: 'text', label: 'Designation' }
-                    - { property: 'historique', type: 'textarea', label: 'Historique' }
-                    - { property: 'contact', type: 'textarea', label: 'Contacter' }
-                    - { property: 'telephone', type: 'textarea', label: 'Téléphoner' }
-                    - { property: 'autre_contact', type: 'textarea', label: 'Autre contact' }
-                    - { property: 'reclamation', type: 'textarea', label: 'Faire reclamation' }
+                    - { property: 'name', type: 'text', label: "Nom de l'article" }
                     - { property: 'categorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' } }
 
         Categorie:
             class: App\Entity\Categorie
+            form:
+                fields:
+                    - { property: 'name', type: 'text' }

@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -21,10 +20,16 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $designation;
+    private $name;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", cascade={"persist"})
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
@@ -34,22 +39,28 @@ class Article
         return $this->id;
     }
 
-    public function getDesignation(): ?string
+    public function getName(): ?string
     {
-        return $this->designation;
+        return $this->name;
     }
 
-    public function setDesignation(string $designation): self
+    public function setName(string $name): self
     {
-        $this->designation = $designation;
+        $this->name = $name;
 
         return $this;
     }
 
-
-    public function __toString()
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->designation;
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
     }
 
     public function getCategorie(): ?Categorie
@@ -61,6 +72,15 @@ class Article
     {
         $this->categorie = $categorie;
 
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrepersist()
+    {
+        $this->created_at = new \DateTime();
         return $this;
     }
 }
