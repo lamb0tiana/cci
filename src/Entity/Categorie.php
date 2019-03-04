@@ -25,7 +25,7 @@ class Categorie
 
     public function __construct()
     {
-
+        //$this->article = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,4 +49,6 @@ class Categorie
     {
         return $this->categorie;
     }
+
+
 }

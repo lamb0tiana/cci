@@ -24,14 +24,39 @@ class Article
     private $designation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="categorie", cascade={"persist"})
+     * @ORM\Column(type="text")
+     */
+    private $historique;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $contact;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $autre_contact;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $reclamation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
-
+    
     public function __construct()
     {
-        //$this->categorie = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -51,37 +76,74 @@ class Article
         return $this;
     }
 
-    public function getCategorie(): ?self
+    public function getHistorique(): ?string
+    {
+        return $this->historique;
+    }
+
+    public function setHistorique(string $historique): self
+    {
+        $this->historique = $historique;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(string $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAutreContact(): ?string
+    {
+        return $this->autre_contact;
+    }
+
+    public function setAutreContact(?string $autre_contact): self
+    {
+        $this->autre_contact = $autre_contact;
+
+        return $this;
+    }
+
+    public function getReclamation(): ?string
+    {
+        return $this->reclamation;
+    }
+
+    public function setReclamation(?string $reclamation): self
+    {
+        $this->reclamation = $reclamation;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?self $categorie)  
+    public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    public function addCategorie(self $categorie): self
-    {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
-            $categorie->setCategorie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategorie(self $categorie): self
-    {
-        if ($this->categorie->contains($categorie)) {
-            $this->categorie->removeElement($categorie);
-            // set the owning side to null (unless already changed)
-            if ($categorie->getCategorie() === $this) {
-                $categorie->setCategorie(null);
-            }
-        }
 
         return $this;
     }
