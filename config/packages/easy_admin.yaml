@@ -1,22 +1,25 @@
-#easy_admin:
-    #entities:
-#        # List the entity class name you want to manage
-        #- App\Entity\Article
-        #- App\Entity\Categorie
-#        - App\Entity\User
 
 # config/packages/easy_admin.yaml
 easy_admin:
     entities:
-        Article:
-            class: App\Entity\Article
-            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+        ArticleCategorie:
+            label: 'Articles'
+            class: App\Entity\ArticleCategorie
+            form:
+                title: 'Article'
                 fields:
-                    - { property: 'name', type: 'text', label: "Nom de l'article" }
-                    - { property: 'categorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' } }
-                    - { property: 'content', type: 'fos_ckeditor', label: "Contenu de l'article" }
+                    - { property: 'articles', type: 'App\Form\ArticleType' }
+                    - { property: 'categories', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: { class : 'App\Entity\Categorie', multiple: false }}
+#        Article:
+#            class: App\Entity\Article
+#            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+#                fields:
+#                    - { property: 'name', type: 'text', label: "Nom de l'article" }
+#                    - { property: 'content', type: 'fos_ckeditor', label: "Contenu de l'article" }
+##                    - { property: 'article_categories', type: 'App\Form\ArticleCategorieType' }
 
         Categorie:
+            label: 'Categories'
             class: App\Entity\Categorie
             form:
                 fields:

@@ -24,15 +24,26 @@ class Categorie
      */
     private $name;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="categorie")
+     * @ORM\Column(type="datetime")
      */
-    private $articles;
+    private $created_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie_articles;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->categorie_articles = new ArrayCollection();
     }
+
+
+
+
 
     public function getId(): ?int
     {
@@ -52,38 +63,6 @@ class Categorie
     }
 
     /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setCategorie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
-            // set the owning side to null (unless already changed)
-            if ($article->getCategorie() === $this) {
-                $article->setCategorie(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-    /**
      * @ORM\PrePersist()
      */
     public function onPrepersist()
@@ -97,4 +76,48 @@ class Categorie
     {
      return $this->name;
     }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArticleCategorie[]
+     */
+    public function getCategorieArticles(): Collection
+    {
+        return $this->categorie_articles;
+    }
+
+    public function addCategorieArticle(ArticleCategorie $categorieArticle): self
+    {
+        if (!$this->categorie_articles->contains($categorieArticle)) {
+            $this->categorie_articles[] = $categorieArticle;
+            $categorieArticle->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategorieArticle(ArticleCategorie $categorieArticle): self
+    {
+        if ($this->categorie_articles->contains($categorieArticle)) {
+            $this->categorie_articles->removeElement($categorieArticle);
+            // set the owning side to null (unless already changed)
+            if ($categorieArticle->getCategories() === $this) {
+                $categorieArticle->setCategories(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

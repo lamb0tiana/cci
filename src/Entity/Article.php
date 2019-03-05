@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,10 +34,16 @@ class Article
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $categorie;
+    private $article_categories;
+
+    public function __construct()
+    {
+        $this->article_categories = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -66,17 +74,6 @@ class Article
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?Categorie $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     /**
      * @ORM\PrePersist()
@@ -98,4 +95,37 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|ArticleCategorie[]
+     */
+    public function getArticleCategories(): Collection
+    {
+        return $this->article_categories;
+    }
+
+    public function addArticleCategory(ArticleCategorie $articleCategory): self
+    {
+        if (!$this->article_categories->contains($articleCategory)) {
+            $this->article_categories[] = $articleCategory;
+            $articleCategory->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleCategory(ArticleCategorie $articleCategory): self
+    {
+        if ($this->article_categories->contains($articleCategory)) {
+            $this->article_categories->removeElement($articleCategory);
+            // set the owning side to null (unless already changed)
+            if ($articleCategory->getArticles() === $this) {
+                $articleCategory->setArticles(null);
+            }
+        }
+
+        return $this;
+    }
+
+  
 }
