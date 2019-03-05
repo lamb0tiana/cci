@@ -8,15 +8,8 @@ easy_admin:
             form:
                 title: 'Article'
                 fields:
-                    - { property: 'articles', type: 'App\Form\ArticleType' }
                     - { property: 'categories', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: { class : 'App\Entity\Categorie', multiple: false }}
-#        Article:
-#            class: App\Entity\Article
-#            form:  # <-- 'form' is applied to both 'new' and 'edit' views
-#                fields:
-#                    - { property: 'name', type: 'text', label: "Nom de l'article" }
-#                    - { property: 'content', type: 'fos_ckeditor', label: "Contenu de l'article" }
-##                    - { property: 'article_categories', type: 'App\Form\ArticleCategorieType' }
+                    - { property: 'articles', type: 'App\Form\ArticleType' }
 
         Categorie:
             label: 'Categories'
