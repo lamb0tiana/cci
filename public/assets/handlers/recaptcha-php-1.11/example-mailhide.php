@@ -1,6 +1,6 @@
 <html><body>
 <?
-require_once ("recaptchalib.php");
+require_once("recaptchalib.php");
 
 // get a key at http://www.google.com/recaptcha/mailhide/apikey
 $mailhide_pubkey = '';

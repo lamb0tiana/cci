@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ asset('assets/3dParty/bootstrap/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/typo.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/slider.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/3dParty/colorbox/colorbox.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/tooltips.css') }}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/social.css') }}"/>
@@ -19,15 +20,52 @@
         {% endblock %}
     </head>
     <body>
+    {% set route = app.request.attributes.get("_route") %}
         {% block body %}
             {% block header %}
             <div id="pi-all">
             {{ include('app/header/header.html.twig') }}
 
             {% endblock %}
+                <div id="page">
+                    <!-- - - - - - - - - - SECTION - - - - - - - - - -->
+                    <!-- Title bar -->
+                    <div class="pi-section-w pi-section-base pi-section-base-gradient">
+                        <div class="pi-texture" style="background: url({{ asset('assets/img/hexagon.png') }}) repeat;"></div>
+                        <div class="pi-section" style="padding: 30px 40px 26px;">
+                            <div class="pi-row">
+                                <div class="pi-col-sm-4 pi-center-text-xs">
+                                    <h1 class="h2 pi-weight-300 pi-margin-bottom-5">Clients</h1>
+                                </div>
+                                <div class="pi-col-sm-8 pi-text-right pi-center-text-xs">
+                                    <p class="lead-20 pi-weight-300 pi-margin-top-5 pi-margin-bottom-5">Neque porro quisquam qui
+                                        dolorem</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End title bar -->
+                    <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+            {% include "breadcrumbs.html.twig" %}
             {% block content %}
-                {{ include('app/home/content.html.twig') }}
+
                 {% endblock %}
+                    <!-- - - - - - - - - - SECTION - - - - - - - - - -->
+                    <div class="pi-section-w pi-shadow-inside-top pi-section-grey">
+                        <div class="pi-texture" style="background: url({{ asset('assets/img/hexagon.png') }}) repeat;"></div>
+                        <div class="pi-section pi-padding-top-60 pi-padding-bottom-40 pi-text-center">
+                            <p class="lead-30 pi-text-dark">
+                                Have a project with us?
+                                <span class="pi-weight-400">Feel free</span>
+                                <a href="#" class="btn pi-btn-base pi-btn-big" style="margin-left: 25px;">
+                                    <i class="icon-mail pi-icon-left"></i> Get in Touch
+
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+                </div>
             {% block footer %}
                 {{ include('footer.html.twig') }}
                 {% endblock %}
@@ -43,6 +81,7 @@
             <script src="{{ asset('assets/3dParty/jquery.scrollTo.min.js') }}"></script>
             <script src="{{ asset('assets/3dParty/colorbox/jquery.colorbox-min.js') }}"></script>
             <script src="{{ asset('assets/scripts/pi.global.js') }}"></script>
+            <script src="{{ asset('assets/scripts/pi.slider.js') }}"></script>
             <script src="{{ asset('assets/scripts/pi.tooltip.js') }}"></script>
             <script src="{{ asset('assets/scripts/pi.init.tooltip.js') }}"></script>
 

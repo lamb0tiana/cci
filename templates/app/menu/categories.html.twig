@@ -1,0 +1,9 @@
+
+{% for categorie in categories %}
+<li>
+    <a href="{{ path('categorie', {'categorie': categorie.slug }) }}">
+        <span>{{ categorie.name | capitalize}}</span>
+    </a>
+
+</li>
+{% endfor %}

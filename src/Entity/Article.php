@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("name",message="Nom de votre article existe déjà.")
  */
 class Article
 {
@@ -39,11 +41,24 @@ class Article
      */
     private $article_categories;
 
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+
+
+
     public function __construct()
     {
         $this->article_categories = new ArrayCollection();
     }
 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
     public function getId(): ?int
     {

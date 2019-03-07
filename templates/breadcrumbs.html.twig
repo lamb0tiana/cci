@@ -1,0 +1,23 @@
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+<!-- Breadcrumbs -->
+<div class="pi-section-w pi-border-bottom pi-section-grey">
+    <div class="pi-section pi-titlebar pi-breadcrumb-only">
+        <div class="pi-breadcrumb pi-center-text-xs">
+            <ul>
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                {% if route != "home" %}
+                    {% if route == "categorie" %}
+                        <li>
+                            <a href="#">Categories</a>
+                        </li>
+                        <li>{{ app.request.get("categorie").name | capitalize }}</li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End breadcrumbs -->
+<!-- - - - - - - - - - END SECTION - - - - - - - - - -->

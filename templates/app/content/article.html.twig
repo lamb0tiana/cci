@@ -1,0 +1,86 @@
+{% extends "base.html.twig" %}
+{% block content %}
+
+    <div class="pi-section-w pi-section-white pi-slider-enabled piTooltips piSocials">
+        <div class="pi-section pi-padding-bottom-10">
+
+            <div class="pi-row">
+
+                <div class="pi-col-sm-9 pi-padding-bottom-40">
+
+                    <!-- Slider -->
+                    <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-show-arrow-hover pi-margin-bottom-40">
+                        <div class="pi-slider pi-slider-animate-opacity">
+
+                            <!-- Slide -->
+                            <div class="pi-slide">
+                                <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
+
+                                    <a href="{{ asset('assets/img_external/gallery/blog-1.jpg') }}" class="pi-colorbox cboxElement">
+                                        <img src="{{ asset('assets/img_external/gallery/blog-1.jpg') }}" alt=""></a>
+
+                                </div>
+                            </div>
+                            <!-- End slide -->
+
+                            <!-- Slide -->
+                            <div class="pi-slide pi-slide-active">
+                                <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
+
+                                    <a href="{{ asset('assets/img_external/gallery/blog-2.jpg') }}" class="pi-colorbox cboxElement">
+                                        <img src="{{ asset('assets/img_external/gallery/blog-2.jpg') }}" alt=""></a>
+
+                                </div>
+                            </div>
+                            <!-- End slide -->
+
+                        </div>
+                        <div class="pi-slider-pagination"><span class="pi-slider-page"><span></span></span><span class="pi-slider-page pi-slider-page-active"><span></span></span></div><div class="pi-slider-arrow pi-slider-arrow-left "><span></span></div><div class="pi-slider-arrow pi-slider-arrow-right "><span></span></div></div>
+                    <!-- End slider -->
+
+                    <h2 class="pi-weight-600">
+                        {{ article.name | capitalize }}
+                    </h2>
+
+                    {{ article.content | raw }}
+
+
+                </div>
+
+                <div class="pi-sidebar pi-col-sm-3">
+
+                    <!-- Search -->
+                    <div class="pi-sidebar-block pi-padding-bottom-60">
+                        <h3 class="h6 pi-uppercase pi-weight-700 pi-letter-spacing pi-has-bg pi-margin-bottom-20">
+                            Search
+                        </h3>
+                        <form class="pi-grouped-input pi-pi-search-form-wide">
+                            <button type="submit" class="btn pi-btn-base"><i class="icon-search-1"></i></button>
+                            <div class="pi-input-inline">
+                                <input type="text" class="form-control pi-input-wide" placeholder="e.g. Inspiration">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End search -->
+
+                    <!-- Categories -->
+                    <div class="pi-sidebar-block pi-padding-bottom-40">
+                        <h3 class="h6 pi-uppercase pi-weight-700 pi-letter-spacing pi-has-bg pi-margin-bottom-15">
+                            Categories
+                        </h3>
+                        <ul class="pi-list-with-icons pi-list-icons-right-open">
+                            <li><a href="#">Creative</a> (2)</li>
+                            <li><a href="#">Design</a> (9)</li>
+                            <li><a href="#">Photography</a> (9)</li>
+                            <li><a href="#">Image</a> (2)</li>
+                            <li><a href="#">Videos</a> (4)</li>
+                            <li><a href="#">Wordpress</a> (4)</li>
+                        </ul>
+                    </div>
+                    <!-- End categories -->
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("name",message="Cette catégorie existe déjà.")
  */
 class Categorie
 {
@@ -31,6 +33,12 @@ class Categorie
     private $created_at;
 
     /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="categories", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -41,7 +49,10 @@ class Categorie
         $this->categorie_articles = new ArrayCollection();
     }
 
-
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
 
 

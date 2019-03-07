@@ -22,8 +22,8 @@ class ArticleController extends EasyAdminController
             if($request->isMethod("POST"))
             {
                 $entity->getArticleCategories()->clear();
-
-                $categories = $request->request->get("article")["categories"]["autocomplete"];
+                $article    = $request->request->get("article");
+                $categories = array_key_exists("categories",$article) ? $article["categories"]["autocomplete"]:[];
                 for($i =0 ; $i < count($categories) ; $i++)
                 {
                     $article_categorie = new ArticleCategorie();
