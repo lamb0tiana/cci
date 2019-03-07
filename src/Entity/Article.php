@@ -34,7 +34,7 @@ class Article
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="articles", cascade={"remove"}, orphanRemoval=true)
      * @ORM\JoinColumn(nullable=false)
      */
     private $article_categories;

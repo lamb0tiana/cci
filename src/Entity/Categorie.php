@@ -31,7 +31,7 @@ class Categorie
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleCategorie", mappedBy="categories", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie_articles;
