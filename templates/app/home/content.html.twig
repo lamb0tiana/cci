@@ -7,7 +7,7 @@
             <!-- Filter -->
             <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
                 <ul>
-                    <li><a href="#" class="" data-filter="*">All</a></li>
+                    <li><a href="#" class="" data-filter="*">Tous les articles</a></li>
                     {% for categorie in categories %}
                         <li><a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
                     {% endfor %}
