@@ -27,7 +27,7 @@ class AppController extends AbstractController
     {
         $categories = $this->em->getRepository(Categorie::class)->getCategorieContent();
         return $this->render('app/home/content.html.twig', [
-            "categories" => $categories
+            "categories_content" => $categories
         ]);
     }
 
@@ -36,6 +36,5 @@ class AppController extends AbstractController
     {
         $categories = $this->em->getRepository(Categorie::class)->getMenu();
         return new JsonResponse($categories);
-        return $this->render("app/menu/categories.html.twig", ["categories" => $categories]);
     }
 }

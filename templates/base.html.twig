@@ -24,6 +24,7 @@
     <body>
     {% set route = app.request.attributes.get("_route") %}
         {% block body %}
+            {% set categories = render(controller("App\\Controller\\AppController::getCategories")) | json_decode%}
             {% block header %}
             <div id="pi-all">
             {{ include('app/header/header.html.twig', {'route': route}) }}
@@ -53,19 +54,7 @@
 
                 {% endblock %}
                     <!-- - - - - - - - - - SECTION - - - - - - - - - -->
-                    <div class="pi-section-w pi-shadow-inside-top pi-section-grey">
-                        <div class="pi-texture" style="background: url({{ asset('assets/img/hexagon.png') }}) repeat;"></div>
-                        <div class="pi-section pi-padding-top-60 pi-padding-bottom-40 pi-text-center">
-                            <p class="lead-30 pi-text-dark">
-                                Have a project with us?
-                                <span class="pi-weight-400">Feel free</span>
-                                <a href="#" class="btn pi-btn-base pi-btn-big" style="margin-left: 25px;">
-                                    <i class="icon-mail pi-icon-left"></i> Get in Touch
 
-                                </a>
-                            </p>
-                        </div>
-                    </div>
                     <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
                 </div>
             {% block footer %}
@@ -86,7 +75,7 @@
             <script src="{{ asset('assets/scripts/pi.global.js') }}"></script>
             <script src="{{ asset('assets/scripts/pi.slider.js') }}"></script>
             <script src="{{ asset('assets/scripts/pi.tooltip.js') }}"></script>
-            <script src="{{ asset('assets/scripts/pi.init.tooltip.js') }}"></script>
+            {#<script src="{{ asset('assets/scripts/pi.init.tooltip.js') }}"></script>#}
             <script src="{{ asset('assets/scripts/pi.init.isotope.js') }}"></script>
 
         {% endblock %}
