@@ -1,38 +1,45 @@
 {% extends "base.html.twig" %}
 {% block content %}
+    <div class="pi-section-w pi-section-white piCaptions">
+        <div class="pi-section pi-padding-bottom-60">
 
-    <!-- - - - - - - - - - SECTION - - - - - - - - - -->
-    <div class="pi-section-w pi-section-white piTooltips">
-        <div class="pi-section pi-padding-bottom-80">
-            <!-- Intro text -->
-            <p class="lead-30 pi-text-dark pi-text-center">
-                Nam libero tempore,
-                <span class="pi-text-bg-base">cum soluta</span> nobis est optio cumque nihil impedit quo minus id quod
-                maxime placeat facere
 
-            </p>
-            <hr class="pi-divider-gap-70">
-            <!-- End intro text -->
-            <!-- Logos gallery -->
-            <div class="pi-row pi-liquid-col-2xs-2 pi-liquid-col-sm-5 pi-gallery pi-gallery-small-margins">
-                <!-- Logo -->
-                {% for categorie in categories %}
-                    {% set slug = categorie.slug %}
-                <div class="pi-gallery-item">
-                    <div class="pi-img-w pi-tooltip" data-placement="top" title="" data-original-title="{{ slug }}">
-                        <a href="{{ path('categorie', {'categorie': slug }) }}">
-                            <span class="pi-img-border-double pi-img-opacity-70" style="background: #f6f9f9;">
-                            <img src="https://via.placeholder.com/182x127.png?text={{ slug }}" alt="{{ slug }}">
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
-                <!-- End Logo -->
+            <!-- Filter -->
+            <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
+                <ul>
+                    <li><a href="#" class="" data-filter="*">All</a></li>
+                    {% for categorie in categories %}
+                        <li><a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
-            <!-- End logos gallery -->
+            <!-- End filter -->
+            <!-- Portfolio gallery -->
+            <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" style="position: relative; height: 257.078px;">
+                {% for article in categories_content %}
+                <!-- Portfolio item -->
+                    {% set slug = article.categorie_slug | split(",") | join(" ") %}
+                <div class="{{ slug }} pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/sensuality-at-the-sea.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">{{ article.article_name }}</a>
+                            </h6>
+                            {{ article.article_contenu | raw }}
+                            {% set slug = slug |split(" ")[0] %}
+                            <a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">Voir l'article</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+                {% endfor %}
+            </div>
+            <!-- End portfolio gallery -->
+
         </div>
     </div>
-    <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+
 
 {% endblock %}
