@@ -16,9 +16,8 @@
                 <a href="{{ path('home') }}">
                     <span>Home</span>
                 </a>
-
             </li>
-            {{ render(controller("App\\Controller\\AppController::renderMenu")) }}
+            {{ include ("app/menu/categories.html.twig", { 'route': route, 'slug' : slug, 'categories': categories}) }}
         </ul>
     </div>
 </div>

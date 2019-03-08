@@ -25,4 +25,17 @@ class CategorieRepository extends ServiceEntityRepository
         return $qb->select("c.name,c.id, c.slug")
             ->getQuery()->getArrayResult();
     }
+
+
+
+    public function getCategorieContent()
+    {
+        $qb = $this->createQueryBuilder("c");
+        $qb->select("c.name categorie_name, c.description categorie_description, c.id, c.slug categorie_slug, a.name article_name, a.content article_contenu")
+            ->leftJoin("c.categorie_articles","c_a")
+            ->leftJoin("c_a.articles","a")
+            ->getQuery();
+        $categories_content = $qb->getQuery()->getArrayResult();
+        return $categories_content;
+    }
 }

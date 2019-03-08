@@ -7,7 +7,8 @@
             </a>
 
         </li>
-        {{ render(controller("App\\Controller\\AppController::renderMenu", { 'route': route, 'slug' : slug})) }}
+
+        {{ include ("app/menu/categories.html.twig", { 'route': route, 'slug' : slug, 'categories': categories}) }}
     </ul>
 </div>
 <!-- End menu -->

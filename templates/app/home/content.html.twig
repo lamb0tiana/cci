@@ -1,6 +1,372 @@
 {% extends "base.html.twig" %}
 {% block content %}
+    {{ dump(categories) }}
+    <div class="pi-section-w pi-section-white piCaptions">
+        <div class="pi-section pi-padding-bottom-60">
 
+            <!-- Filter -->
+            <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
+                <ul>
+                    <li><a href="#" class="" data-filter="*">All</a></li>
+                    <li><a href="#" data-filter=".Beautiful" class="">Beautiful</a></li>
+                    <li><a href="#" data-filter=".Lifestyle" class="">Lifestyle</a></li>
+                    <li><a href="#" data-filter=".Creation" class="">Creation</a></li>
+                    <li><a href="#" data-filter=".Business" class="">Business</a></li>
+                    <li><a href="#" data-filter=".Travel" class="pi-active">Travel</a></li>
+                    <li><a href="#" data-filter=".Nature" class="">Nature</a></li>
+                </ul>
+            </div>
+            <!-- End filter -->
+
+            <!-- Filter -->
+            <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
+                <ul>
+                    <li><a href="#" class="" data-filter="*">All</a></li>
+                    {% for categorie in categories %}
+                        <li><a href="#" data-filter=".Beautiful" class="">{{ categorie.categorie_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- End filter -->
+            <!-- Portfolio gallery -->
+            <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" style="position: relative; height: 257.078px;">
+
+                <!-- Portfolio item -->
+                <div class="Beautiful Morning pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/sensuality-at-the-sea.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Sensuality at the sea</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Beautiful</a>, <a href="#">Morning</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Lifestyle Creation pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/selecting-pencil.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Selecting pencil</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Lifestyle</a>, <a href="#">Creation</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Technology Business pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/mobile-business.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Mobile business</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Technology</a>, <a href="#">Business</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Beautiful Travel pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/woman-at-the-wall.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Woman at the wall</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Beautiful</a>, <a href="#">Travel</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Beautiful Food pi-gallery-item isotope-item" style="position: absolute; left: 705px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/healthy-food.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Healthy food</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Beautiful</a>, <a href="#">Food</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Sport Lifestyle pi-gallery-item isotope-item" style="position: absolute; left: 352px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/golf-ball.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Golf ball</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Sport</a>, <a href="#">Lifestyle</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Food Nature pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/bread-and-spikes.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Bread and spikes</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Food</a>, <a href="#">Nature</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Travel Lifestyle pi-gallery-item isotope-item" style="position: absolute; left: 352px; top: 0px;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/sailing.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Sailing</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Travel</a>, <a href="#">Lifestyle</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Nature Business pi-gallery-item isotope-item" style="position: absolute; left: 352px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/globe-on-green-leaf.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Globe On Green Leaf</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Nature</a>, <a href="#">Business</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Сreation pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 771px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/digital-photo-camera.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Digital Photo Camera</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Сreation</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Travel Lifestyle pi-gallery-item isotope-item" style="position: absolute; left: 705px; top: 0px;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/a-great-ship.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">A great ship</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Travel</a>, <a href="#">Lifestyle</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Creation Lifestyle pi-gallery-item isotope-item" style="position: absolute; left: 352px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/microphone-on-concert.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Microphone on concert</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Creation</a>, <a href="#">Lifestyle</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Nature pi-gallery-item isotope-item" style="position: absolute; left: 705px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/water.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Water</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Nature</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Creation Nature pi-gallery-item isotope-item" style="position: absolute; left: 705px; top: 0px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/moulding-with-the-clay.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Moulding with the clay</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Creation</a>, <a href="#">Nature</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+                <!-- Portfolio item -->
+                <div class="Nature pi-gallery-item isotope-item" style="position: absolute; left: 352px; top: 257px; display: none;">
+                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
+                        <a href="#"><img src="{{ asset('assets/img_external/gallery/haystack.jpg') }}" alt=""></a>
+                        <div class="pi-img-overlay pi-img-overlay-darker">
+                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
+                                <a href="#" class="pi-link-white">Haystack</a>
+                            </h6>
+
+                            <p class="pi-margin-top-minus-5 pi-margin-bottom-15">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+
+                            <ul class="pi-caption-links pi-margin-bottom-20">
+                                <li><i class="icon-tag"></i><a href="#">Nature</a></li>
+                            </ul>
+
+                            <a href="#" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">View project</a>
+                        </div>
+                    </div>
+                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
+                </div>
+                <!-- End portfolio item -->
+
+            </div>
+            <!-- End portfolio gallery -->
+
+        </div>
+    </div>
+{#
     <!-- - - - - - - - - - SECTION - - - - - - - - - -->
     <div class="pi-section-w pi-section-white piTooltips">
         <div class="pi-section pi-padding-bottom-80">
@@ -34,5 +400,6 @@
         </div>
     </div>
     <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+#}
 
 {% endblock %}

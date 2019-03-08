@@ -25,3 +25,4 @@ easy_admin:
             form:
                 fields:
                     - { property: 'name', type: 'text' }
+                    - { property: 'description', type: 'fos_ckeditor' }

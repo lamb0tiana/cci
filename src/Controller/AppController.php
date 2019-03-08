@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,16 +25,17 @@ class AppController extends AbstractController
      */
     public function index()
     {
-        $categories = $this->em->getRepository(Categorie::class)->getMenu();
+        $categories = $this->em->getRepository(Categorie::class)->getCategorieContent();
         return $this->render('app/home/content.html.twig', [
             "categories" => $categories
         ]);
     }
 
 
-    public function renderMenu(Request $request)
+    public function getCategories(Request $request)
     {
         $categories = $this->em->getRepository(Categorie::class)->getMenu();
+        return new JsonResponse($categories);
         return $this->render("app/menu/categories.html.twig", ["categories" => $categories]);
     }
 }
