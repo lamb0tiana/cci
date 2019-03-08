@@ -7,7 +7,7 @@
             </a>
 
         </li>
-        {{ render(controller("App\\Controller\\AppController::renderMenu")) }}
+        {{ render(controller("App\\Controller\\AppController::renderMenu", { 'route': route, 'slug' : slug})) }}
     </ul>
 </div>
 <!-- End menu -->
