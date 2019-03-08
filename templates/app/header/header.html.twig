@@ -12,12 +12,16 @@
                     <img src="{{ asset('assets/img/logo-base.png') }}" alt="">
                 </a>
             </div>
+            {% set slug = null %}
+            {% if route == "categorie" %}
+                {% set slug = app.request.attributes.get("categorie").slug %}
+            {% endif %}
             <!-- End logo -->
             <!-- Text -->
             <div class="pi-row-block pi-row-block-txt pi-hidden-2xs">HTML5 template</div>
             <!-- End text -->
-            {{ include('app/menu/menu.html.twig') }}
-            {{ include('app/menu/mobile_menu.html.twig') }}
+            {{ include('app/menu/menu.html.twig', {'route': route, 'slug': slug }) }}
+            {{ include('app/menu/mobile_menu.html.twig', {'route': route, 'slug': slug }) }}
         </div>
     </div>
     <!-- End header row -->
