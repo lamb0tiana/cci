@@ -36,6 +36,7 @@ class CategorieRepository extends ServiceEntityRepository
             ->leftJoin("c.categorie_articles","c_a")
             ->leftJoin("c_a.articles","a")
             ->groupBy("a")
+            ->orderBy("a.created_at","desc")
             ->getQuery();
         $categories_content = $qb->getQuery()->getArrayResult();
         return $categories_content;
