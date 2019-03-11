@@ -49,11 +49,13 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    // .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;
+var config = Encore.getWebpackConfig();
 
-module.exports = Encore.getWebpackConfig();
+config.externals.jquery = "jQuery";
+module.exports = config;
