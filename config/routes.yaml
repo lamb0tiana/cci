@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+mentions-legales:
+    path: /mentions-legales
+    controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults: { template: static/mentions-legals.html.twig}

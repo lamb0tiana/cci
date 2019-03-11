@@ -37,4 +37,7 @@ class AppController extends AbstractController
         $categories = $this->em->getRepository(Categorie::class)->getMenu();
         return new JsonResponse($categories);
     }
+
+
+
 }
