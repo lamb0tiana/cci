@@ -7,7 +7,7 @@
             <!-- Filter -->
             <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
                 <ul>
-                    <li><a href="#" class="" data-filter="*">All</a></li>
+                    <li><a href="#" class="" data-filter="*">Tous les articles</a></li>
                     {% for categorie in categories %}
                         <li><a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
                     {% endfor %}
@@ -15,11 +15,11 @@
             </div>
             <!-- End filter -->
             <!-- Portfolio gallery -->
-            <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" style="position: relative; height: 257.078px;">
+            <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" >
                 {% for article in categories_content %}
                 <!-- Portfolio item -->
                     {% set slug = article.categorie_slug | split(",") | join(" ") %}
-                <div class="{{ slug }} pi-gallery-item isotope-item" style="position: absolute; left: 0px; top: 0px; display: none;">
+                <div class="{{ slug }} pi-gallery-item isotope-item" >
                     <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
                         <a href="#"><img src="{{ asset('assets/img_external/gallery/sensuality-at-the-sea.jpg') }}" alt=""></a>
                         <div class="pi-img-overlay pi-img-overlay-darker">
