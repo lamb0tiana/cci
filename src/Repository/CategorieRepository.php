@@ -22,7 +22,7 @@ class CategorieRepository extends ServiceEntityRepository
     public function getMenu()
     {
         $qb = $this->createQueryBuilder("c");
-        return $qb->select("c.name,c.id, c.slug")
+        return $qb->select("c.name,c.id, c.slug,c.description")
             ->getQuery()->getArrayResult();
     }
 
