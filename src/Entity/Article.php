@@ -148,6 +148,7 @@ class Article
         foreach ($this->article_categories as $articleCategorie) {
             $return[] = $articleCategorie->getCategories();
         }
+        
         return $return;
     }
 
