@@ -57,7 +57,7 @@ class ArticleSubscriber implements EventSubscriberInterface
     {
         return [
            EasyAdminEvents::PRE_PERSIST => 'onPrepersist',
-//           EasyAdminEvents::POST_EDIT    => 'onPreEdit'
+           EasyAdminEvents::PRE_EDIT    => 'onPreEdit'
         ];
     }
 }
