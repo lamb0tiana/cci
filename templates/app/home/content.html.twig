@@ -25,7 +25,42 @@
                 {% for article in categories_content %}
                 <!-- Portfolio item -->
                     {% set slug = article.categorie_slug | split(",") | join(" ") %}
-                <div class="{{ slug }} pi-gallery-item isotope-item" >
+
+                    <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
+                        <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
+
+                            <div class="pi-img-w pi-img-round-corners pi-img-hover-zoom">
+                                <a href="img_external/gallery/relaxing-woman.jpg" class="pi-colorbox cboxElement">
+                                    <img src="{{ asset('assets/img_external/gallery/relaxing-woman.jpg') }}" alt="">
+
+                                    <div class="pi-img-overlay pi-no-padding pi-img-overlay-dark">
+                                        <div class="pi-caption-centered">
+                                            <div>
+                                                <span class="pi-caption-icon pi-caption-icon-dark pi-caption-scale icon-search"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="pi-portfolio-description pi-portfolio-description-round-corners">
+
+                                <ul class="pi-portfolio-cats">
+                                    <li><i class="icon-clock"></i>{{ article.created_at | date("Y-m-d") }}</li>
+                                </ul>
+                                {% set slug = slug |split(" ")[0] %}
+                                <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
+                                </h2>
+                                <div class="description_article">
+                                {{ article.article_contenu | raw }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+{#                <div class="{{ slug }} pi-gallery-item isotope-item" >
                     <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
                         <a href="#"><img src="{{ asset('assets/img_external/gallery/sensuality-at-the-sea.jpg') }}" alt=""></a>
                         <div class="pi-img-overlay pi-img-overlay-darker">
@@ -38,7 +73,7 @@
                         </div>
                     </div>
                     <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
-                </div>
+                </div>#}
                 <!-- End portfolio item -->
                 {% endfor %}
             </div>
@@ -52,5 +87,6 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.0.5/dotdotdot.js"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
 {% endblock %}
