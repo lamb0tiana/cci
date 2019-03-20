@@ -2,27 +2,34 @@
 # config/packages/easy_admin.yaml
 easy_admin:
     entities:
-#        ArticleCategorie:
-#            label: 'Articles'
-#            class: App\Entity\ArticleCategorie
-#            form:
-#                title: 'Article'
-#                fields:
-#                    - { property: 'categories', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: { class : 'App\Entity\Categorie', multiple: false }}
-#                    - { property: 'articles', type: 'App\Form\ArticleType' }
+        #        ArticleCategorie:
+        #            label: 'Articles'
+        #            class: App\Entity\ArticleCategorie
+        #            form:
+        #                title: 'Article'
+        #                fields:
+        #                    - { property: 'categories', type: 'Symfony\Bridge\Doctrine\Form\Type\EntityType', type_options: { class : 'App\Entity\Categorie', multiple: false }}
+        #                    - { property: 'articles', type: 'App\Form\ArticleType' }
         Article:
             controller: App\Controller\EasyAdmin\ArticleController
             class: App\Entity\Article
-            form:
+            new:
                 fields:
-                    - { property: 'name' }
-                    - { property: 'content', type: 'fos_ckeditor' }
-                    - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { mapped: false , class: 'App\Entity\Categorie', multiple: true} }
+                - { property: 'name' }
+                - { property: 'content', type: 'fos_ckeditor' }
+                - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { mapped: false, class: 'App\Entity\Categorie', multiple: true} }
+
+            edit:
+                fields:
+                - { property: 'name' }
+                - { property: 'content', type: 'fos_ckeditor' }
+                - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie', multiple: true} }
+
 
         Categorie:
             label: 'Categories'
             class: App\Entity\Categorie
             form:
                 fields:
-                    - { property: 'name', type: 'text' }
-                    - { property: 'description', type: 'fos_ckeditor' }
+                - { property: 'name', type: 'text' }
+                - { property: 'description', type: 'fos_ckeditor' }

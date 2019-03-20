@@ -142,5 +142,12 @@ class Article
         return $this;
     }
 
-  
+    public function getCategories()
+    {
+        $return = [];
+        foreach ($this->article_categories as $articleCategorie) {
+            $return[] = $articleCategorie->getCategories();
+        }
+        return $return;
+    }
 }
