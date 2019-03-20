@@ -13,11 +13,12 @@
     /* place for '...' */
     margin-right: -1em;
     padding-right: 1em;
+    height : 250px;
 }
 
 .description_article:before{
     /* points in the end */
-    content: '...';
+    /*content: '...';*/
     /* absolute position */
     position: absolute;
     /* set position to right bottom corner of block */
