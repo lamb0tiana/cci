@@ -19,7 +19,7 @@ class ArticleCategorie
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="article_categorie", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="article_categories", cascade={"persist"})
      */
     private $articles;
 
