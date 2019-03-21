@@ -32,9 +32,10 @@ class CategorieRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder("c");
         $qb->select("group_concat(c.name) categorie_name, c.description categorie_description, c.id categorie_id, group_concat(c.slug) categorie_slug, 
-        a.name article_name, a.content article_contenu, a.slug article_slug, a.created_at")
+        a.name article_name, a.content article_contenu, a.slug article_slug, a.created_at,group_concat(i.filename) images")
             ->leftJoin("c.categorie_articles","c_a")
             ->leftJoin("c_a.articles","a")
+            ->leftJoin("a.images","i")
             ->groupBy("a")
             ->orderBy("a.created_at","desc")
             ->getQuery();

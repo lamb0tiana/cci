@@ -1,0 +1,8 @@
+liip_imagine:
+  filter_sets:
+    home_slider:
+      filters:
+        thumbnail:
+          # set the thumbnail size to "32x32" pixels
+          size: [323, 200]
+          mode: outbound

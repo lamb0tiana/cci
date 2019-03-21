@@ -2,12 +2,20 @@
 
 namespace App\Twig;
 
+use Symfony\Component\Asset\Packages;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+    private $container;
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -16,7 +24,12 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('file_exists', [$this, 'file_exists']),
+        ];
+    }
 
     public function json_decode($value, $assoc = false)
     {
@@ -41,5 +54,14 @@ class AppExtension extends AbstractExtension
             return array_values($filtered);
         }
         return $filtered;
+    }
+
+
+
+    public function file_exists($path)
+    {
+//        $this->packages->
+        $path = $this->container->getParameter("kernel.project_dir")."/public".$path;
+        return is_file($path);
     }
 }

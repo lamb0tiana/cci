@@ -26,6 +26,10 @@ class AppController extends AbstractController
     public function index()
     {
         $categories = $this->em->getRepository(Categorie::class)->getCategorieContent();
+
+        array_walk($categories,function(&$categorie){
+            $categorie["images"] = explode(",",$categorie["images"]);
+        });
         return $this->render('app/home/content.html.twig', [
             "categories_content" => $categories
         ]);

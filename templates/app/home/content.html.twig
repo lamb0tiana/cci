@@ -1,86 +1,73 @@
 {% extends "base.html.twig" %}
+{% import "app/macro/slider.html.twig" as slider %}
 {% block stylesheets %}
 {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 {% endblock %}
 {% block content %}
-    <div class="pi-section-w pi-section-white piCaptions">
-        <div class="pi-section pi-padding-bottom-60">
+<div class="pi-section-w pi-section-white piCaptions">
+    <div class="pi-section pi-padding-bottom-60">
 
-            <!-- Filter -->
-            <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
-                <ul>
-                    <li><a href="#" class="categorie-all" data-filter="*">
-                            <span class="categorie-description">L'ensembe de tous les actualités du site.</span>Tous les articles</a></li>
-                    {% for categorie in categories %}
-                        <li><span class="categorie-description">{{ categorie.description|raw }}</span>
-                            <a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
-                    {% endfor %}
-                </ul>
-                <div id="categorie-description">L'ensembe de tous les actualités du site.</div>
-            </div>
-            <!-- End filter -->
-            <!-- Portfolio gallery -->
-            <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" >
-                {% for article in categories_content %}
-                <!-- Portfolio item -->
-                    {% set slug = article.categorie_slug | split(",") | join(" ") %}
-
-                    <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
-                        <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
-
-                            <div class="pi-img-w pi-img-round-corners pi-img-hover-zoom">
-                                <a href="img_external/gallery/relaxing-woman.jpg" class="pi-colorbox cboxElement">
-                                    <img src="{{ asset('assets/img_external/gallery/relaxing-woman.jpg') }}" alt="">
-
-                                    <div class="pi-img-overlay pi-no-padding pi-img-overlay-dark">
-                                        <div class="pi-caption-centered">
-                                            <div>
-                                                <span class="pi-caption-icon pi-caption-icon-dark pi-caption-scale icon-search"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="pi-portfolio-description pi-portfolio-description-round-corners">
-
-                                <ul class="pi-portfolio-cats">
-                                    <li><i class="icon-clock"></i>{{ article.created_at | date("Y-m-d") }}</li>
-                                </ul>
-                                {% set slug = slug |split(" ")[0] %}
-                                <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
-                                </h2>
-                                <div class="description_article">
-                                {{ article.article_contenu | raw }}
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-{#                <div class="{{ slug }} pi-gallery-item isotope-item" >
-                    <div class="pi-img-w pi-img-shadow pi-img-with-overlay pi-no-margin-bottom">
-                        <a href="#"><img src="{{ asset('assets/img_external/gallery/sensuality-at-the-sea.jpg') }}" alt=""></a>
-                        <div class="pi-img-overlay pi-img-overlay-darker">
-                            <h6 class="pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-top-minus-5 pi-text-shadow">
-                                <a href="#" class="pi-link-white">{{ article.article_name }}</a>
-                            </h6>
-                            {{ article.article_contenu | raw }}
-                            {% set slug = slug |split(" ")[0] %}
-                            <a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="btn pi-btn-small pi-btn-base pi-uppercase pi-weight-600 pi-letter-spacing">Voir l'article</a>
-                        </div>
-                    </div>
-                    <div class="pi-img-shadow-gap pi-shadow-effect8"></div>
-                </div>#}
-                <!-- End portfolio item -->
+        <!-- Filter -->
+        <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
+            <ul>
+                <li><a href="#" class="categorie-all" data-filter="*">
+                        <span class="categorie-description">L'ensembe de tous les actualités du site.</span>Tous les articles</a></li>
+                {% for categorie in categories %}
+                    <li><span class="categorie-description">{{ categorie.description|raw }}</span>
+                        <a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
                 {% endfor %}
-            </div>
-            <!-- End portfolio gallery -->
-
+            </ul>
+            <div id="categorie-description">L'ensembe de tous les actualités du site.</div>
         </div>
+        <!-- End filter -->
+        <!-- Portfolio gallery -->
+        <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" >
+            {% for article in categories_content %}
+            <!-- Portfolio item -->
+                {% set slug = article.categorie_slug | split(",") | join(" ") %}
+
+                <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
+                    <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
+
+                        <!-- Slider -->
+                        <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
+                            <div class="pi-slider pi-slider-animate-opacity">
+                                {% if article.images %}
+                                    {% for image in article.images if file_exists(asset('/images/articles/'~ image))%}
+                                        {{ slider.home_slider(asset('/images/articles/'~ image)) }}
+                                    {% endfor %}
+                                        {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                    {% else %}
+                            {% endif %}
+                            </div>
+                        </div>
+                        <!-- End slider -->
+
+
+                        <div class="pi-portfolio-description pi-portfolio-description-round-corners">
+
+                            <ul class="pi-portfolio-cats">
+                                <li><i class="icon-clock"></i>{{ article.created_at | date("Y-m-d") }}</li>
+                            </ul>
+                            {% set slug = slug |split(" ")[0] %}
+                            <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
+                            </h2>
+                            <div class="description_article">
+                            {{ article.article_contenu | raw }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <!-- End portfolio item -->
+            {% endfor %}
+        </div>
+        <!-- End portfolio gallery -->
+
     </div>
+</div>
 
 
 {% endblock %}
