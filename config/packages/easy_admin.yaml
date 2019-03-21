@@ -5,6 +5,8 @@ easy_admin:
         Article:
             controller: App\Controller\EasyAdmin\ArticleController
             class: App\Entity\Article
+            form:
+                - { property: 'name', type_options: { block_name: 'custom_name' } }
             new:
                 fields:
                 - { property: 'name' }
@@ -14,7 +16,7 @@ easy_admin:
 
             edit:
                 fields:
-                - { property: 'name' }
+                - { property: 'name', type_options: { block_name: 'custom_name' } }
                 - { property: 'content', type: 'fos_ckeditor' }
                 - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie', multiple: true} }
                 - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false}}
