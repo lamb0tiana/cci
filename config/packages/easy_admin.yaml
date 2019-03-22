@@ -1,12 +1,16 @@
 
 # config/packages/easy_admin.yaml
 easy_admin:
+    design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - 'admin/collection_images_view.html.twig'
     entities:
         Article:
             controller: App\Controller\EasyAdmin\ArticleController
             class: App\Entity\Article
-            form:
-                - { property: 'name', type_options: { block_name: 'custom_name' } }
+            templates:
+                edit: 'admin/edit_article.html.twig'
             new:
                 fields:
                 - { property: 'name' }
@@ -16,10 +20,10 @@ easy_admin:
 
             edit:
                 fields:
-                - { property: 'name', type_options: { block_name: 'custom_name' } }
+                - { property: 'name' }
                 - { property: 'content', type: 'fos_ckeditor' }
                 - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie', multiple: true} }
-                - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false}}
+                - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false, block_name: 'images_collection'}}
 
 
         Categorie:

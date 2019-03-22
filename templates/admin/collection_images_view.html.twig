@@ -1,0 +1,30 @@
+{% block _article_images_collection_widget %}
+    <div class="form-group">
+        <div id="article_images"
+             data-prototype="{{ form_widget(form.vars.prototype)|e }}">
+
+            {% for k, image in form.children %}
+                <div class="form-group  field-image">
+                    <img src="{{ asset('images/articles/'~image.vars.value.filename) | imagine_filter('bo_view')}}" alt="">
+                    {#{{ dump(image) }}#}
+                    <div class="btn btn-secondary input-file-container">
+
+                    {#<span class="btn-label">#}
+                    {#<div class="custom-file">#}
+                    <label for="{{ image.children.imageFile.children.file.vars.id }}" class="custom-file-label">
+                        <i class="fa fa-upload">Choisir fichier</i>
+                        <input type="file" name="{{ image.children.imageFile.children.file.vars.full_name }}" id="{{ image.children.imageFile.children.file.vars.id }}" class="d-none custom-file-input">
+                    </label>
+                        <input type="button" class="btn btn-danger delete_image_item" value="supprimer"/>
+                    {#</div>#}
+                    </div>
+
+                        {#</span>#}
+                    {#{{ form_widget(image, {'attr': {'class': 'form-control image-item', 'data-index': k}}) }}#}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
