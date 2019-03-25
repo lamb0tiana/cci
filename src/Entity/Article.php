@@ -52,6 +52,11 @@ class Article
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Minisite", inversedBy="articles")
+     */
+    private $minisite;
+
 
 
 
@@ -184,6 +189,18 @@ class Article
                 $image->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMinisite(): ?Minisite
+    {
+        return $this->minisite;
+    }
+
+    public function setMinisite(?Minisite $minisite): self
+    {
+        $this->minisite = $minisite;
 
         return $this;
     }

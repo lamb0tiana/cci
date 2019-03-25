@@ -49,6 +49,12 @@ class Categorie
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Minisite", inversedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $minisite;
+
     public function __construct()
     {
         $this->categorie_articles = new ArrayCollection();
@@ -144,6 +150,18 @@ class Categorie
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getMinisite(): ?Minisite
+    {
+        return $this->minisite;
+    }
+
+    public function setMinisite(?Minisite $minisite): self
+    {
+        $this->minisite = $minisite;
 
         return $this;
     }
