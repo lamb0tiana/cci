@@ -19,32 +19,15 @@ class MinisiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Minisite::class);
     }
 
-    // /**
-    //  * @return Minisite[] Returns an array of Minisite objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Liste des minisites
+     */
+    public function lists()
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+            ->select("m.name","m.ndd","m.id")
+            ->getQuery()->getArrayResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Minisite
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
