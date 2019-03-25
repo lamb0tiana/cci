@@ -54,6 +54,25 @@
             });
             $("#article_images").on("click",".delete_image_item",function(){
                 $(this).parents(".field-image").remove();
+            });
+
+            $("#add_image").on("click",function(e){
+                e.preventDefault();
+                var $lastFileInput = $(".file-item:last");
+                var iLastIndex = $lastFileInput.data("index");
+                if(!$lastFileInput.val())
+                {
+                    if($lastFileInput.parents(".field-image").find("img").length ==0)
+                    {
+                        return;
+                    }
+                }
+                $widget = $("#article_images").find("div:first").clone();
+                $widget = $("<div class='form-group field-image'>"+ $widget.html().replace(/\d+/g,++iLastIndex) +"</div>");
+                // $widget = $("div").addClass("form-group field-image").append($widget);
+                $("#article_images").append($widget).find("img:last").remove();
+
+
             })
         });
     </script>

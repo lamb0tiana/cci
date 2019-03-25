@@ -1,3 +1,4 @@
+
 {% block _article_images_collection_widget %}
     <div class="form-group">
         <div id="article_images"
@@ -8,7 +9,7 @@
                     <div class="btn btn-secondary input-file-container">
                     <label for="{{ image.children.imageFile.children.file.vars.id }}" class="custom-file-label">
                         <i class="fa fa-upload">Choisir fichier</i>
-                        <input type="file" name="{{ image.children.imageFile.children.file.vars.full_name }}" id="{{ image.children.imageFile.children.file.vars.id }}" class="d-none custom-file-input">
+                        <input data-index="{{ k }}" type="file" name="{{ image.children.imageFile.children.file.vars.full_name }}" id="{{ image.children.imageFile.children.file.vars.id }}" class="d-none custom-file-input file-item">
                     </label>
                         <input type="button" class="btn btn-danger delete_image_item" value="supprimer"/>
                     </div>
@@ -18,3 +19,19 @@
     </div>
 {% endblock %}
 
+{% block collection_row %}
+    {{ block('form_row') }}
+
+    {% if allow_add|default(false) %}
+
+
+        <div class="form-group field-collection-action">
+            <div class="form-widget">
+                <a href="#" class="btn btn-secondary btn-sm" id="add_image">
+                    <i class="fa fa-plus"></i>
+                    <span class="btn-label">{{ (form|length == 0 ? 'action.add_new_item' : 'action.add_another_item')|trans({}, 'EasyAdminBundle') }}</span>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock collection_row %}
