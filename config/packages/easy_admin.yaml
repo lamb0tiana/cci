@@ -33,3 +33,16 @@ easy_admin:
                 fields:
                 - { property: 'name', type: 'text' }
                 - { property: 'description', type: 'fos_ckeditor' }
+
+        Minisite:
+            label: 'Minisites'
+            class: App\Entity\Minisite
+            list:
+                fields:
+                - {property: 'name', label : 'Nom du site'}
+                - {property: 'ndd', label: 'Nom de domaine du minisite'}
+                - {property: 'created_at', label: 'Créé le :'}
+            form:
+                fields:
+                - {property: 'name', type_options: { label : 'Nom du minisite'} }
+                - {property: 'ndd', type_options:  {label: 'Nom de domaine'}}

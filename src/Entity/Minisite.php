@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MinisiteRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Minisite
 {
@@ -149,6 +150,15 @@ class Minisite
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrepersist()
+    {
+        $this->created_at = new \DateTime();
         return $this;
     }
 }
