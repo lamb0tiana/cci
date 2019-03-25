@@ -57,7 +57,10 @@ class Article
      */
     private $minisite;
 
-
+    public function getRelatedMinisite()
+    {
+        return $this->minisite->getName();
+    }
 
 
     public function __construct()
