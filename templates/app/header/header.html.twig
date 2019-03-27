@@ -17,9 +17,7 @@
                 {% set slug = app.request.attributes.get("categorie").slug %}
             {% endif %}
             <!-- End logo -->
-            <!-- Text -->
-            <div class="pi-row-block pi-row-block-txt pi-hidden-2xs">HTML5 template</div>
-            <!-- End text -->
+
 
             {{ include('app/menu/menu.html.twig', {'route': route, 'slug': slug }) }}
             {{ include('app/menu/mobile_menu.html.twig', {'route': route, 'slug': slug }) }}
