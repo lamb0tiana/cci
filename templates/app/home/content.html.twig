@@ -34,12 +34,17 @@
                         <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
                             <div class="pi-slider pi-slider-animate-opacity">
                                 {% if article.images %}
-                                    {% for image in article.images if file_exists(asset('/images/articles/'~ image))%}
-                                        {{ slider.home_slider(asset('/images/articles/'~ image)) }}
-                                    {% endfor %}
-                                        {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                    {% if article.images %}
+                                        {% for image in article.images if file_exists(asset('/images/articles/'~ image))%}
+                                            {% if loop.first %}
+                                            {{ slider.home_slider(asset('/images/articles/'~ image)) }}
+                                            {% endif %}
+                                        {% endfor %}
                                     {% else %}
-                            {% endif %}
+                                        {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                    {% endif %}
+                                    {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                {% endif %}
                             </div>
                         </div>
                         <!-- End slider -->

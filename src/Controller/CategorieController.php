@@ -29,6 +29,12 @@ class CategorieController extends AbstractController
         if(!$categorie)
             return $this->redirectToRoute("home");
 
-        return $this->render("app/content/articles.html.twig", ["categorie" => $categorie]);
+        $category_name = $categorie->getName();
+        $categories = $this->em->getRepository(Categorie::class)->getCategorieContent($category_name);
+
+        array_walk($categories,function(&$categorie){
+            $categorie["images"] = explode(",",$categorie["images"]);
+        });
+        return $this->render("app/content/articles.html.twig", ["categories_content" => $categories]);
     }
 }
