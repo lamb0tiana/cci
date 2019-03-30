@@ -27,8 +27,12 @@ class CategorieRepository extends ServiceEntityRepository
     }
 
 
-
-    public function getCategorieContent()
+    /**
+     * Récupère tous les articles , images rattachées au catégorie.
+     * @param string|null $category_name
+     * @return array
+     */
+    public function getCategorieContent(string $category_name = null)
     {
         $qb = $this->createQueryBuilder("c");
         $qb->select("group_concat(c.name) categorie_name, c.description categorie_description, c.id categorie_id, group_concat(c.slug) categorie_slug, 
@@ -39,6 +43,11 @@ class CategorieRepository extends ServiceEntityRepository
             ->groupBy("a")
             ->orderBy("a.created_at","desc")
             ->getQuery();
+
+        if($category_name)
+        {
+            $qb->where("c.name = :category_name")->setParameter("category_name", $category_name);
+        }
         $categories_content = $qb->getQuery()->getArrayResult();
         return $categories_content;
     }

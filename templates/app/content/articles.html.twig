@@ -1,41 +1,70 @@
 {% extends "base.html.twig" %}
+{% import "app/macro/slider.html.twig" as slider %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+{% endblock %}
 {% block content %}
 
     <div class="pi-section-w pi-section-white piCounter">
         <div class="pi-section pi-padding-bottom-30">
 
             <h2 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-has-bg pi-margin-bottom-25">
-                {{ categorie.name | capitalize }}
+                {{ app.request.attributes.get("categorie").getName() | capitalize }}
             </h2>
 
-            <!-- Portfolio gallery -->
-            <div class="pi-row pi-liquid-col-xs-3 pi-gallery pi-padding-bottom-20">
-                {% for article_categorie in categorie.categorieArticles() %}
-                    {% set article = article_categorie.articles %}
-                <!-- Portfolio item -->
-                <div class="pi-gallery-item pi-padding-bottom-40">
-                    <div class="pi-img-w pi-img-round-corners pi-img-shadow">
-                        <a href="{{ path('article', {'categorie': categorie.slug, 'article': article.slug  }) }}" class="pi-colorbox cboxElement">
-                            <img src="https://via.placeholder.com/326x228.png?text={{ article.name }}" alt="{{ article.name }}">
-                            <div class="pi-img-overlay pi-img-overlay-darker">
-                                <div class="pi-caption-centered">
-                                    <div>
-                                        <span class="pi-caption-icon pi-caption-scale icon-search"></span>
+            <div class="pi-section-w pi-section-white piCaptions">
+                <div class="pi-section pi-padding-bottom-60">
+
+
+                    <!-- Portfolio gallery -->
+                    <div id="isotope" class="pi-row pi-liquid-col-xs-2 pi-liquid-col-sm-3 pi-gallery pi-gallery-small-margins pi-text-center isotope" >
+                        {% for article in categories_content %}
+                            <!-- Portfolio item -->
+                            {% set slug = article.categorie_slug | split(",") | join(" ") %}
+
+                            <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
+                                <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
+
+                                    <!-- Slider -->
+                                    <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
+                                        <div class="pi-slider pi-slider-animate-opacity">
+                                            {% if article.images %}
+                                                {% for image in article.images if file_exists(asset('/images/articles/'~ image))%}
+                                                    {{ slider.home_slider(asset('/images/articles/'~ image)) }}
+                                                {% endfor %}
+                                                {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                            {% else %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!-- End slider -->
+
+
+                                    <div class="pi-portfolio-description pi-portfolio-description-round-corners">
+
+                                        <ul class="pi-portfolio-cats">
+                                            <li><i class="icon-clock"></i>{{ article.created_at | date("Y-m-d") }}</li>
+                                        </ul>
+                                        {% set slug = slug |split(" ")[0] %}
+                                        <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
+                                        </h2>
+                                        <div class="description_article">
+                                            {{ article.article_contenu | raw }}
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <h3 class="h6 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-5"><a href="{{ path('article', {'categorie': categorie.slug, 'article': article.slug  }) }}" class="pi-link-dark">{{ article.name }}</a></h3>
-{#                    <ul class="pi-meta">
-                        <li><i class="icon-tag"></i><a href="#">tag</a>, <a href="#">tag2</a></li>
-                    </ul>#}
-                </div>
-                <!-- End portfolio item -->
 
-                {% endfor %}
+                            <!-- End portfolio item -->
+                        {% endfor %}
+                    </div>
+                    <!-- End portfolio gallery -->
+
+                </div>
             </div>
-            <!-- End portfolio gallery -->
+
 
 
         </div>
