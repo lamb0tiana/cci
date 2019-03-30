@@ -41,6 +41,7 @@
 
     <script type="text/javascript">
         $(function() {
+            $(".field-collection-action").remove();
             $('.edit-form').areYouSure({ 'message': '{{ 'form.are_you_sure'|trans({}, 'EasyAdminBundle')|e('js') }}' });
 
             $('a.action-delete').on('click', function(e) {

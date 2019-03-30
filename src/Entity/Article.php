@@ -59,7 +59,7 @@ class Article
 
     public function getRelatedMinisite()
     {
-        return $this->minisite->getName();
+        return $this->minisite ? $this->minisite->getName() : null;
     }
 
 
