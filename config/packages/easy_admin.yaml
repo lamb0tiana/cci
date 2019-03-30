@@ -10,8 +10,8 @@ easy_admin:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - 'admin/collection_images_view.html.twig'
         menu:
-            - { label: 'Dashboard', route: 'admin_index'}
-            - { entity : 'Minisite'}
+#            - { label: 'Dashboard', route: 'admin_index'}
+#            - { entity : 'Minisite'}
             - { entity : 'Article'}
             - { entity : 'Categorie'}
     entities:
@@ -33,10 +33,11 @@ easy_admin:
             class: App\Entity\Article
             templates:
                 edit: 'admin/edit_article.html.twig'
+                new: 'admin/new_article.html.twig'
             list:
                 fields:
                 - { property: 'name', label: "Nom de l'article"}
-                - { property: 'RelatedMinisite', label: "Nom du minisite"}
+#                - { property: 'RelatedMinisite', label: "Nom du minisite"}
                 - { property: 'created_at', label: "Créé le :"}
 
             new:
@@ -44,7 +45,7 @@ easy_admin:
                 - { property: 'name' }
                 - { property: 'content', type: 'fos_ckeditor' }
                 - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { mapped: false, class: 'App\Entity\Categorie', multiple: true} }
-                - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false}}
+                - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false,block_name: 'images_collection'}}
 
             edit:
                 fields:
