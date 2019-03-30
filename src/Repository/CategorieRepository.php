@@ -46,7 +46,7 @@ class CategorieRepository extends ServiceEntityRepository
 
         if($category_name)
         {
-            $qb->where("c.name = :category_name")->setParameter("category_name", $category_name);
+            $qb->andWhere("c.name = :category_name")->setParameter("category_name", $category_name);
         }
         $categories_content = $qb->getQuery()->getArrayResult();
         return $categories_content;
