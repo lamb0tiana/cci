@@ -21,27 +21,30 @@
                             <!-- Slide -->
                             <div class="pi-slide">
                                 <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
+                                    {% set image_path = asset('assets/img_external/gallery/blog-1.jpg') %}
+                                    {% if article.images %}
+                                        {% set i = 0 %}
+                                        {% for image in article.images %}
+                                            {% if file_exists(asset('/images/articles/'~ image.filename)) %}
+                                                {% if i == 0 %}
 
-                                    <a href="{{ asset('assets/img_external/gallery/blog-1.jpg') }}" class="pi-colorbox cboxElement">
-                                        <img src="{{ asset('assets/img_external/gallery/blog-1.jpg') }}" alt=""></a>
+                                                    {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% set i = i+1 %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <a href="{{ image_path }}" class="pi-colorbox cboxElement">
+                                        <img src="{{ image_path }}" alt=""></a>
 
                                 </div>
                             </div>
                             <!-- End slide -->
 
-                            <!-- Slide -->
-                            <div class="pi-slide pi-slide-active">
-                                <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
 
-                                    <a href="{{ asset('assets/img_external/gallery/blog-2.jpg') }}" class="pi-colorbox cboxElement">
-                                        <img src="{{ asset('assets/img_external/gallery/blog-2.jpg') }}" alt=""></a>
-
-                                </div>
-                            </div>
-                            <!-- End slide -->
 
                         </div>
-                        <div class="pi-slider-pagination"><span class="pi-slider-page"><span></span></span><span class="pi-slider-page pi-slider-page-active"><span></span></span></div><div class="pi-slider-arrow pi-slider-arrow-left "><span></span></div><div class="pi-slider-arrow pi-slider-arrow-right "><span></span></div></div>
+
                     <!-- End slider -->
 
                     {% if article.name matches "/service client/" %}
