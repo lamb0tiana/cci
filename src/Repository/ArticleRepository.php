@@ -24,4 +24,32 @@ class ArticleRepository extends ServiceEntityRepository
         $qb     =   $this->createQueryBuilder("a");
         return $qb->select("a.name,a.content")->getQuery()->getArrayResult();
     }
+
+    /**
+     * Récupération article dans le meme categorie
+     * @param string $category
+     * @param string $article_slug
+     * @return array
+     */
+    public function getRelatedArticleFromCategory(string $category_slug, string $article_slug = null)
+    {
+        $qb = $this->createQueryBuilder("a");
+        $qb->select("a.name,a.content")
+            ->join("a.article_categories","ac")
+            ->join("ac.categories","c")
+            ->where("c.name = :category_slug")
+        ->setParameter("category_slug",$category_slug);
+
+
+        if($article_slug)
+        {
+            $qb->andWhere("a.slug != :article_slug")
+            ->setParameter("article_slug",$article_slug);
+        }
+
+
+        $qb->setMaxResults(5);
+
+        return $qb->getQuery()->getArrayResult();
+    }
 }

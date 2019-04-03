@@ -3,3 +3,11 @@
     APPELER
     <div></div>
 </div>
+<br>
+<p>Nos conseillers sont disponibles 24h/24 et 7j/7.<br>
+
+Temps moyen de réponse sur la dernière heure écoulée : 00mn{{ 2*("now"|date('H')) }}s<br>
+Conseillers disponibles à cet instant : {{ 1+("now"|date('i')%3) }}<br>
+    <img src="{{ asset('assets/img/cartouche.png') | imagine_filter('cartouche') }}" alt="118412.png"><br>
+    *Service d'annuaire et de mise en relation indépendant des marques<br>
+    Conditions tarifaires disponibles sur le site <a href="http://www.118412.fr">www.118412.fr</a> et sur <a href="http://infosva.org">infosva.org</a></p>
