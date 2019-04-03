@@ -12,13 +12,13 @@
         <div class="pi-pagenav pi-padding-bottom-20 pi-big pi-text-center" data-isotope-nav="isotope">
             <ul>
                 <li><a href="#" class="categorie-all" data-filter="*">
-                        <span class="categorie-description">L'ensembe de tous les actualités du site.</span>Tous les articles</a></li>
+                        <span class="categorie-description">L'ensemble de tous les actualités du site.</span>Tous les articles</a></li>
                 {% for categorie in categories %}
                     <li><span class="categorie-description">{{ categorie.description|raw }}</span>
                         <a href="#" data-filter=".{{ categorie.slug }}" class="">{{ categorie.name }}</a></li>
                 {% endfor %}
             </ul>
-            <div id="categorie-description">L'ensembe de tous les actualités du site.</div>
+            <div id="categorie-description">L'ensemble de tous les actualités du site.</div>
         </div>
         <!-- End filter -->
         <!-- Portfolio gallery -->
