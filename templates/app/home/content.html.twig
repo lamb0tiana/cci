@@ -66,7 +66,7 @@
                             {% set slug = slug |split(" ")[0] %}
                             <h2 class="h4">
                                 <a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">
-                                    {{ article.article_name }}
+                                    {{ article.article_name | easyadmin_truncate(15,true, "...")}}
                                 </a>
                             </h2>
                             <div class="description_article">
