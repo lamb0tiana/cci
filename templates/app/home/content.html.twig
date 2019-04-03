@@ -74,7 +74,7 @@
                                 {% if article.article_contenu | length > 200 %}
                                     {{ article.article_contenu | easyadmin_truncate(200,true,"<br><a href='" ~ article_link ~ "'>Lire la suite ....</a>") | raw }}
                                 {% else %}
-                                    {{ article.article_contenu | raw }}<br><a href='" ~ article_link ~ "'>Lire la suite ....</a>
+                                    {{ article.article_contenu | raw }}<br><a href='{{ article_link  }}'>Lire la suite ....</a>
                                 {% endif %}
                             </div>
 
