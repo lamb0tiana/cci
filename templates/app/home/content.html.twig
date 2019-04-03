@@ -53,9 +53,16 @@
 
 
                         <div class="pi-portfolio-description pi-portfolio-description-round-corners">
+                            {% set fictive_date = '2019-02-01'|date('U') %}
+                            {#{% set fictive_endDate = '2019-04-03'|date('U') %}#}
+                            {#{% set fictive_endDate = (random(+'now'|date('U') - fictive_endDate) + fictive_endDate )|date('d-m-Y') %}#}
+                            {% set fictive_date = (random(+'now'|date('U') - fictive_date) + fictive_date )|date('d-m-Y') %}
+{#{{ fictive_date }}#}
 
+                            {% set service_updated_date = random(+'now'|date('U'))|date('d') %}
+                            {% set updated_date = random(+'now'|date('U'))|date('d') %}
                             <ul class="pi-portfolio-cats">
-                                <li><i class="icon-clock"></i>{{ article.created_at | date("Y-m-d") }}</li>
+                                <li><i class="icon-clock"></i>{{ article.article_name matches "/service client/" ? service_updated_date ~ "-01-2019": fictive_date }}</li>
                             </ul>
                             {% set slug = slug |split(" ")[0] %}
                             <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
