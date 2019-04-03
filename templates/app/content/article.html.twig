@@ -1,4 +1,8 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"/>
+{% endblock %}
 {% block content %}
 
     <div class="pi-section-w pi-section-white pi-slider-enabled piTooltips piSocials">
@@ -38,10 +42,14 @@
                         <div class="pi-slider-pagination"><span class="pi-slider-page"><span></span></span><span class="pi-slider-page pi-slider-page-active"><span></span></span></div><div class="pi-slider-arrow pi-slider-arrow-left "><span></span></div><div class="pi-slider-arrow pi-slider-arrow-right "><span></span></div></div>
                     <!-- End slider -->
 
+                    {% if article.name matches "/service client/" %}
+                        <p>Vous pouvez joindre {{ article.name }} par téléphone</p>
+                        {{ include('app/content/button_caller.html.twig') }}
+                        {% else %}
                     <h2 class="pi-weight-600">
                         {{ article.name | capitalize }}
                     </h2>
-
+                    {% endif %}
                     {{ article.content | raw }}
 
 
@@ -49,35 +57,22 @@
 
                 <div class="pi-sidebar pi-col-sm-3">
 
-                    <!-- Search -->
-                    <div class="pi-sidebar-block pi-padding-bottom-60">
-                        <h3 class="h6 pi-uppercase pi-weight-700 pi-letter-spacing pi-has-bg pi-margin-bottom-20">
-                            Search
-                        </h3>
-                        <form class="pi-grouped-input pi-pi-search-form-wide">
-                            <button type="submit" class="btn pi-btn-base"><i class="icon-search-1"></i></button>
-                            <div class="pi-input-inline">
-                                <input type="text" class="form-control pi-input-wide" placeholder="e.g. Inspiration">
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End search -->
+                    {% set params = app.request.attributes.get("_route_params") %}
+                    {% set related_articles = render(controller("App\\Controller\\ArticleController:relatedArticle", {'categorie': params['categorie'], 'article' : params['article']})) | json_decode %}
 
-                    <!-- Categories -->
+                    <!-- Related Articles -->
+                    {% for art in related_articles %}
                     <div class="pi-sidebar-block pi-padding-bottom-40">
                         <h3 class="h6 pi-uppercase pi-weight-700 pi-letter-spacing pi-has-bg pi-margin-bottom-15">
-                            Categories
+                            {{ art.name }}
                         </h3>
-                        <ul class="pi-list-with-icons pi-list-icons-right-open">
-                            <li><a href="#">Creative</a> (2)</li>
-                            <li><a href="#">Design</a> (9)</li>
-                            <li><a href="#">Photography</a> (9)</li>
-                            <li><a href="#">Image</a> (2)</li>
-                            <li><a href="#">Videos</a> (4)</li>
-                            <li><a href="#">Wordpress</a> (4)</li>
-                        </ul>
+                        <div class="description_article">
+                            {{ art.content | raw }}
+                        </div>
                     </div>
-                    <!-- End categories -->
+                    {% endfor %}
+
+                    <!-- Related Articles -->
 
             </div>
 

@@ -12,3 +12,8 @@ liip_imagine:
           # set the thumbnail size to "32x32" pixels
           size: [323, 200]
           mode: outbound
+    cartouche:
+      filters:
+        thumbnail:
+          size: [281,40]
+          mode: outbount
