@@ -37,7 +37,7 @@ class ArticleRepository extends ServiceEntityRepository
         $qb->select("a.name,a.content,a.slug slug_article,c.slug slug_categorie")
             ->join("a.article_categories","ac")
             ->join("ac.categories","c")
-            ->where("c.name = :category_slug")
+            ->where("c.slug = :category_slug")
         ->setParameter("category_slug",$category_slug);
 
 
