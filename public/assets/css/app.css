@@ -15,7 +15,9 @@
     padding-right: 1em;
     height : 250px;
 }
-
+.description_article:hover{
+    color: #18ba60
+}
 .description_article:before{
     /* points in the end */
     /*content: '...';*/

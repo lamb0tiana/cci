@@ -34,7 +34,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getRelatedArticleFromCategory(string $category_slug, string $article_slug = null)
     {
         $qb = $this->createQueryBuilder("a");
-        $qb->select("a.name,a.content")
+        $qb->select("a.name,a.content,a.slug slug_article,c.slug slug_categorie")
             ->join("a.article_categories","ac")
             ->join("ac.categories","c")
             ->where("c.name = :category_slug")
