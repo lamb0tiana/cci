@@ -60,6 +60,9 @@
                             {% set slug = slug |split(" ")[0] %}
                             <h2 class="h4"><a href="{{ path('article', {'categorie': slug, 'article': article.article_slug  }) }}" class="pi-link-no-style">{{ article.article_name }}</a>
                             </h2>
+                            {% if article.article_name matches "/service client/" %}
+                                {{ include('app/content/button_caller.html.twig') }}
+                            {% endif %}
                             <div class="description_article">
                             {{ article.article_contenu | raw }}
                             </div>
