@@ -3,7 +3,6 @@
 {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/loading-btn.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"/>
 {% endblock %}
 {% block content %}
 
@@ -73,11 +72,12 @@
                     {% for art in related_articles %}
                     <div class="pi-sidebar-block pi-padding-bottom-40">
                         <h3 class="h6 pi-uppercase pi-weight-700 pi-letter-spacing pi-has-bg pi-margin-bottom-15">
-                            <a href="{{ path('article', {'categorie': art.slug_categorie, 'article': art.slug_article }) }}">{{ art.name }}</a>
+                            {% set article_link = path('article', {'categorie': art.slug_categorie, 'article': art.slug_article })  %}
+                            <a href="{{ article_link}}">{{ art.name }}</a>
                         </h3>
-                        <div class="description_article">
-                            {{ art.content | raw }}
-                        </div>
+
+                            {{ art.content | easyadmin_truncate(200,true,"<br><a href='" ~ article_link ~ "'>Lire la suite ....</a>") | raw }}
+
                     </div>
                     {% endfor %}
 
