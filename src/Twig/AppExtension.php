@@ -20,7 +20,8 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFilter('json_decode', [$this, 'json_decode']),
-            new TwigFilter('filter', [$this,'filter'])
+            new TwigFilter('filter', [$this,'filter']),
+            new TwigFilter('str_repeat', [$this,'str_repeat'])
         ];
     }
 
@@ -57,11 +58,20 @@ class AppExtension extends AbstractExtension
     }
 
 
-
+    /**
+     * @param $path
+     * @return bool
+     */
     public function file_exists($path)
     {
-//        $this->packages->
         $path = $this->container->getParameter("kernel.project_dir")."/public".$path;
         return is_file($path);
+    }
+
+
+    public function str_repeat(string $string, int $times)
+    {
+        if(!$string) return "";
+        return str_repeat($string,$times);
     }
 }
