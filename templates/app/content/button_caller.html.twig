@@ -1,14 +1,29 @@
-<div class="button_caller running ld ld-ext-left">
+<a href="tel:118412">
+<div class="button_caller running ld ld-ext-left" style="float:right;margin-right:110px">
     <div class="ld ld-ball ld-bounce"></div>
     APPELER
     <div></div>
 </div>
-<br>
-<p align="right">Nos conseillers sont disponibles 24h/24 et 7j/7.<br>
+</a>
 
-<span style="color:black">Temps moyen de réponse sur la dernière heure écoulée : </span>[00mn{{ 2*("now"|date('H')) }}s]<br>
-<span style="color:black">Conseillers disponibles à cet instant : </span>[{{ 1+("now"|date('i')%3) }}]<br>
-    <img src="{{ asset('assets/img/cartouche.png') | imagine_filter('cartouche') }}" alt="118412.png"><br>
-    <span style="font-size:9px">*Service d'annuaire et de mise en relation indépendant des marques<br><br>
-    Conditions tarifaires disponibles sur le site <a href="http://www.118412.fr">www.118412.fr</a> et sur <a href="http://infosva.org">infosva.org</a></p>
+<br>
+
+<p align="right"><br>Conseillers disponibles 24h/24 et 7j/7.</p>
+
+
+
+<p align="left">
+<span style="color:black"><img width="20" src="https://img.icons8.com/ios/50/000000/technical-support.png">&nbsp;&nbsp;Conseillers disponibles à cet instant : </span>[{{ 1+("now"|date('i')%3) }}]<br>
+<br>
+<span style="color:black"><img width="20" src="https://img.icons8.com/dotty/50/000000/timer.png">&nbsp;&nbsp;Temps moyen de réponse sur la dernière heure écoulée : </span>[00mn{{ 2*("now"|date('H')) }}s]<br>
+
+<br>
+
+<img src="{{ asset('assets/img/cartouche.png') | imagine_filter('cartouche') }}" alt="118412.png"><br>
+
+<span style="font-size:9px">
+    *Service d'annuaire et de mise en relation indépendant des marques<br>
+    Conditions tarifaires disponibles sur le site <a href="http://www.118412.fr">www.118412.fr</a> et sur <a href="http://infosva.org">infosva.org</a>
 </span>
+
+</p>
