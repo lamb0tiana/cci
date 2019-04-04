@@ -1,19 +1,7 @@
 {% macro home_slider(filepath) %}
-    <!-- Slide -->
     <div class="pi-slide">
         <div class="pi-img-w pi-img-round-corners">
-            {#{{ dump(file_exists(filepath)) }}#}
-            <a href="{{ filepath }}" class="pi-colorbox">
                 <img src="{{ filepath | imagine_filter('home_slider')}}" width="321" height="198" alt="picture.png">
-            <span class="">
-                <span class="pi-caption-centered">
-                    <span>
-                        <span class=""></span>
-                    </span>
-                </span>
-            </span>
-            </a>
         </div>
     </div>
-    <!-- End slide -->
 {% endmacro %}

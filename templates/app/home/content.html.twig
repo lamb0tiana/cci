@@ -26,6 +26,7 @@
             {% for article in categories_content %}
             <!-- Portfolio item -->
                 {% set slug = article.categorie_slug | split(",") | join(" ") %}
+                                {% set article_link = path('article', {'categorie': slug, 'article': article.article_slug  }) %}
 
                 <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
                     <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
@@ -39,10 +40,10 @@
                                         {% if file_exists(asset('/images/articles/'~ image)) %}
                                             {% if i == 0 %}
 
-                                                {{ slider.home_slider(asset('/images/articles/'~ image)) }}
+                                               <a href="{{ article_link }}"> {{ slider.home_slider(asset('/images/articles/'~ image)) }}</a>
                                             {% endif %}
                                         {% else %}
-                                            {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                            <a href="{{ article_link }}">{{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}</a>
                                         {% endif %}
                                         {% set i = i+1 %}
                                     {% endfor %}
@@ -65,7 +66,6 @@
                             </ul>
                             {% set slug = slug |split(" ")[0] %}
                             <h2 class="h4">
-                                {% set article_link = path('article', {'categorie': slug, 'article': article.article_slug  }) %}
                                 <a href="{{ article_link }}" class="pi-link-no-style">
                                     {{ article.article_name | easyadmin_truncate(15,true, "...")}}
                                 </a>
