@@ -18,8 +18,13 @@
 <span style="color:black"><img width="20" src="https://img.icons8.com/dotty/50/000000/timer.png">&nbsp;&nbsp;Temps moyen de réponse sur la dernière heure écoulée : </span>[00mn{{ 2*("now"|date('H')) }}s]<br>
 
 <br>
-
-<img src="{{ asset('assets/img/cartouche.png') | imagine_filter('cartouche') }}" alt="118412.png"><br>
+<div class="cartouche">
+    <div class="formatCapsule capsuleContainer" id="numero">118412</div>
+    <div class="formatCapsule capsuleMiddle"></div>
+    <div class="formatCapsule capsuleAddMiddle" id="details">Service 0,80 € / min<br>+ prix appel</div>
+    <div class="formatCapsule capsuleFin"></div>
+</div>
+{#<img src="{{ asset('assets/img/cartouche.png') | imagine_filter('cartouche') }}" alt="118412.png"><br>#}
 
 <span style="font-size:9px">
     *Service d'annuaire et de mise en relation indépendant des marques<br>

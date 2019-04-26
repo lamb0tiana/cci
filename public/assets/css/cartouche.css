@@ -1,0 +1,36 @@
+.cartouche{
+    margin-left: 5px;
+}
+.formatCapsule{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -4px;
+    position: relative;
+    height: 45px;
+}
+.capsuleMiddle{
+    background: url("../img/cartouche_middle.png") no-repeat 0 0 transparent;
+    width: 16px;
+}
+.capsuleAddMiddle{
+    background-color: #a50f78;
+    color: #FFF;
+    padding: 5px 10px 5px 0px;
+    line-height: 16px;
+    text-align: left;
+}
+.capsuleContainer{
+    color: #a50f78;
+    width: 7.0em;
+    font-family: arial;
+    font-weight: bold;
+    padding: 12px 54px;
+    font-size: 30px;
+    /*color: #91919B;*/
+    border-top: 1px solid rgb(145, 145, 155);
+    margin-top: 1px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(145, 145, 155);
+    /*margin-bottom: 1px;*/
+    border-left: 1px solid rgb(145, 145, 155);
+}
