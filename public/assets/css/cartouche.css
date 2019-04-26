@@ -1,5 +1,6 @@
 .cartouche{
     margin-left: 5px;
+    display: flex;
 }
 .formatCapsule{
     display: inline-block;
@@ -38,11 +39,11 @@
     .capsuleContainer {
         width: auto;
         padding: 12px 15px;
+        font-size: 27px;
     }
 }
-/*@media (max-width: 325px) {*/
-    /*.capsuleMiddle{*/
-        /*font-size: 11px;*/
-        /*width: 110px;*/
-    /*}*/
-/*}*/
+@media (max-width: 300px) {
+    .capsuleAddMiddle {
+        font-size: 12px;
+    }
+}
