@@ -1,7 +1,9 @@
-{% macro home_slider(filepath) %}
+{% macro home_slider(filepath, alt = "picture.png",title= "product") %}
+    {% set alt = alt ? alt : "picture.png" %}
+    {% set title = title ? title : "article" %}
     <div class="pi-slide">
         <div class="pi-img-w pi-img-round-corners">
-                <img src="{{ filepath | imagine_filter('home_slider')}}" width="321" height="198" alt="picture.png">
+                <img src="{{ filepath | imagine_filter('home_slider')}}" width="321" height="198" alt="{{ alt }}" title="{{ title }}">
         </div>
     </div>
 {% endmacro %}
@@ -20,15 +22,16 @@
                 <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
                     <div class="pi-slider pi-slider-animate-opacity">
                         {% if article.images %}
+
                             {% set i = 0 %}
                             {% for image in article.images %}
                                 {% if file_exists(asset('/images/articles/'~ image)) %}
                                     {% if i == 0 %}
 
-                                        <a href="{{ article_link }}"> {{ ac.home_slider(asset('/images/articles/'~ image)) }}</a>
+                                        <a href="{{ article_link }}"> {{ ac.home_slider(asset('/images/articles/'~ image),article.alt_image,article.title_image) }}</a>
                                     {% endif %}
                                 {% else %}
-                                    <a href="{{ article_link }}">{{ ac.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}</a>
+                                    <a href="{{ article_link }}">{{ ac.home_slider(asset('assets/img_external/gallery/blog-1.jpg'),article.alt_image,article.title_image) }}</a>
                                 {% endif %}
                                 {% set i = i+1 %}
                             {% endfor %}
