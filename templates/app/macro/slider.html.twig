@@ -5,3 +5,68 @@
         </div>
     </div>
 {% endmacro %}
+
+
+{% macro article_content(categories) %}
+    {% import "app/macro/slider.html.twig" as ac %}
+    {% for article in categories %}
+        <!-- Portfolio item -->
+        {% set slug = article.categorie_slug | split(",") | join(" ") %}
+        {% set article_link = path('article', {'categorie': slug, 'article': article.article_slug  }) %}
+
+        <div class="{{ slug }} pi-col-sm-4 pi-col-xs-6 isotope-item">
+            <div class="pi-portfolio-item pi-portfolio-description-box pi-portfolio-item-round-corners">
+                <!-- Slider -->
+                <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
+                    <div class="pi-slider pi-slider-animate-opacity">
+                        {% if article.images %}
+                            {% set i = 0 %}
+                            {% for image in article.images %}
+                                {% if file_exists(asset('/images/articles/'~ image)) %}
+                                    {% if i == 0 %}
+
+                                        <a href="{{ article_link }}"> {{ ac.home_slider(asset('/images/articles/'~ image)) }}</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ article_link }}">{{ ac.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}</a>
+                                {% endif %}
+                                {% set i = i+1 %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if  article.article_name matches "/service client/" == false %}
+                            <div class="news_label" style="background: url('{{ asset('assets/img/news.png') }}') no-repeat content-box;height: 60px;width:100px;background-size: contain;position: relative;z-index:10;top: 140px;left:62%"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- End slider -->
+
+
+                <div class="pi-portfolio-description pi-portfolio-description-round-corners">
+                    {% set fictive_date = '2019-02-01'|date('U') %}
+                    {% set fictive_date = (random(+'now'|date('U') - fictive_date) + fictive_date )|date('d-m-Y') %}
+                    {% set service_updated_date = random(+'now'|date('U'))|date('d') %}
+                    {% set updated_date = random(+'now'|date('U'))|date('d') %}
+                    <ul class="pi-portfolio-cats">
+                        <li><i class="icon-clock"></i>{{ article.article_name matches "/service client/" ? service_updated_date ~ "-01-2019": fictive_date }}</li>
+                    </ul>
+                    {% set slug = slug |split(" ")[0] %}
+                    <h2 class="h4">
+                        <a href="{{ article_link }}" class="pi-link-no-style">
+                            {{ article.article_name | easyadmin_truncate(15,true, "...")}}
+                        </a>
+                    </h2>
+                    <div class="description_article">
+                        {% if article.article_contenu | length > 200 %}
+                            {{ article.article_contenu | easyadmin_truncate(200,true,"<br><a href='" ~ article_link ~ "'>Lire la suite ....</a>") | raw }}
+                        {% else %}
+                            {{ article.article_contenu | raw }}<br><a href='{{ article_link  }}'>Lire la suite ....</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- End portfolio item -->
+    {% endfor %}
+{% endmacro %}

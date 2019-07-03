@@ -42,6 +42,17 @@ class AppController extends AbstractController
         return new JsonResponse($categories);
     }
 
+    /**
+     * @Route("/contents_cat", name="content_categorie", options={"expose" = true})
+     */
+    public function contentCategories()
+    {
+        $categories = $this->em->getRepository(Categorie::class)->getCategorieContent();
+        array_walk($categories,function(&$categorie){
+            $categorie["images"] = explode(",",$categorie["images"]);
+        });
+        return $this->render("app/content/content_categorie.html.twig",["categories_content" => $categories]);
+    }
 
 
 }

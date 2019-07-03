@@ -14,6 +14,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('metadata', MetaDataType::class)
             ->add('content', CKEditorType::class)
         ;
     }

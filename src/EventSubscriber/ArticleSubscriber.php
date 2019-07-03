@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 use App\Entity\Article;
 use App\Entity\ArticleCategorie;
 use App\Entity\Categorie;
+use App\Entity\Image;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
@@ -42,14 +43,11 @@ class ArticleSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function onPreEdit(GenericEvent $event)
+    public function onPreUpdate(GenericEvent $event)
     {
         $request = $event->getArgument("request");
         $subject = $event->getSubject();
-        if($subject["name"] == "Article") {
 
-        $i = "";
-        }
 
     }
 
@@ -57,7 +55,7 @@ class ArticleSubscriber implements EventSubscriberInterface
     {
         return [
            EasyAdminEvents::PRE_PERSIST => 'onPrepersist',
-           EasyAdminEvents::PRE_EDIT    => 'onPreEdit'
+//           EasyAdminEvents::PRE_UPDATE    => 'onPreUpdate'
         ];
     }
 }

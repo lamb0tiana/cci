@@ -5,15 +5,23 @@
              data-prototype="">
             {% if form.children | length >0 %}
             {% for k, image in form.children %}
+                {% set image_path = 'images/articles/'~image.vars.value.filename %}
+                {% set display_class = image_path ? : "d-none" %}
                 <div class="form-group  field-image">
-                    <img src="{{ asset('images/articles/'~image.vars.value.filename) | imagine_filter('bo_thumb')}}" alt="">
+                    <img id="img_preview_{{ k }}" src="{{ asset(image_path) | imagine_filter('bo_thumb')}}" alt="" width="200" height="200">
                     <div class="btn btn-secondary input-file-container">
                     <label for="{{ image.children.imageFile.children.file.vars.id }}" class="custom-file-label">
                         <i class="fa fa-upload">Choisir fichier</i>
                         <input data-index="{{ k }}" type="file" name="{{ image.children.imageFile.children.file.vars.full_name }}" id="{{ image.children.imageFile.children.file.vars.id }}" class="d-none custom-file-input file-item">
                     </label>
-                        <input type="button" class="btn btn-danger delete_image_item" value="supprimer"/>
+                        <input type="button" data-index="{{ k }}" class="btn btn-danger delete_image_item" value="supprimer"/>
                     </div>
+                </div>
+                <div class="" id="meta_{{ k }}">
+                <label for="alt_{{ k }}">alternative texte</label>
+                <input id="alt_{{ k }}" name="{{ image.children.alt.vars.full_name }}" value="{{ image.children.alt.vars.value }}" type="text" class="form-control {{ display_class }}" placeholder="alternative texte">
+                <label for="title_{{ k }}">title texte</label>
+                <input id="title_{{ k }}" name="{{ image.children.title.vars.full_name }}" value="{{ image.children.title.vars.value }}" type="text" class="form-control {{ display_class }}" placeholder="titre de l'image">
                 </div>
             {% endfor %}
                 {% else %}
@@ -23,8 +31,13 @@
                                 <i class="fa fa-upload">Choisir fichier</i>
                                 <input data-index="0" type="file" name="article[images][0][imageFile][file]" id="article_images_0_imageFile_file" class="d-none custom-file-input file-item">
                             </label>
-                            <input type="button" class="btn btn-danger delete_image_item" value="supprimer">
+                            <input type="button" data-index="0" class="btn btn-danger delete_image_item" value="supprimer">
                         </div>
+                    </div>
+                    <img id="img_preview_0"  class="preview_img d-none" width="200" height="200"/>
+                    <div id="meta_0" class="d-none">
+                    <input id="alt_0" name="article[images][0][alt]" type="text" class="form-control" placeholder="alternative texte">
+                    <input id="title_0" name="article[images][0][title]" type="text" class="form-control" placeholder="titre de l'image">
                     </div>
             {% endif %}
         </div>

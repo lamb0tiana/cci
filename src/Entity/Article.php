@@ -57,6 +57,11 @@ class Article
      */
     private $minisite;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\MetaData", inversedBy="article", cascade={"persist", "remove"})
+     */
+    private $metadata;
+
     public function getRelatedMinisite()
     {
         return $this->minisite ? $this->minisite->getName() : null;
@@ -204,6 +209,18 @@ class Article
     public function setMinisite(?Minisite $minisite): self
     {
         $this->minisite = $minisite;
+
+        return $this;
+    }
+
+    public function getMetadata(): ?MetaData
+    {
+        return $this->metadata;
+    }
+
+    public function setMetadata(?MetaData $metadata): self
+    {
+        $this->metadata = $metadata;
 
         return $this;
     }
