@@ -1,5 +1,9 @@
 {% extends "base.html.twig" %}
 {% import "app/macro/slider.html.twig" as slider %}
+{% block title %}{{ app.request.attributes.get("categorie").getName()}} {% endblock %}
+{% block metadata %}
+    <meta name="description" content="{{ app.request.attributes.get("categorie").getName() }}">
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
@@ -9,9 +13,9 @@
     <div class="pi-section-w pi-section-white piCounter">
         <div class="pi-section pi-padding-bottom-30">
 
-            <h2 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-has-bg pi-margin-bottom-25">
+            <h1 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-has-bg pi-margin-bottom-25">
                 {{ app.request.attributes.get("categorie").getName() | capitalize }}
-            </h2>
+            </h1>
 
             <div class="pi-section-w pi-section-white piCaptions">
                 <div class="pi-section pi-padding-bottom-60">
@@ -29,16 +33,18 @@
                                     <!-- Slider -->
                                     <div class="pi-slider-wrapper pi-slider-arrows-inside pi-slider-pagination-inside pi-slider-show-arrow-hover pi-no-margin-bottom piSliderEnabled">
                                         <div class="pi-slider pi-slider-animate-opacity">
+
                                                 {% if article.images %}
                                                     {% set i = 0 %}
                                                     {% for image in article.images %}
+
                                                         {% if file_exists(asset('/images/articles/'~ image)) %}
                                                             {% if i == 0 %}
 
-                                                            {{ slider.home_slider(asset('/images/articles/'~ image)) }}
+                                                            {{ slider.home_slider(asset('/images/articles/'~ image),article.alt_image,article.title_image) }}
                                                                 {% endif %}
                                                             {% else %}
-                                                                {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg')) }}
+                                                                {{ slider.home_slider(asset('assets/img_external/gallery/blog-1.jpg',article.alt_image,article.title_image)) }}
                                                         {% endif %}
                                                     {% set i = i+1 %}
                                                     {% endfor %}

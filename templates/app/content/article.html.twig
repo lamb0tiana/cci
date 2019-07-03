@@ -1,9 +1,13 @@
 {% extends "base.html.twig" %}
+{% block title %}{{ article.metadata ? article.metadata.title }}{% endblock %}
 {% block stylesheets %}
 {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/loading-btn.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/cartouche.css') }}"/>
+{% endblock %}
+{% block metadata %}
+    <meta name="description" content="{{ article.metadata ? article.metadata.description }}">
 {% endblock %}
 {% block content %}
 
@@ -22,6 +26,8 @@
                             <div class="pi-slide">
                                 <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
                                     {% set image_path = asset('assets/img_external/gallery/blog-1.jpg') %}
+                                    {% set alt = "picture.png" %}
+                                    {% set title = "article" %}
                                     {% if article.images %}
                                         {% set i = 0 %}
                                         {% for image in article.images %}
@@ -29,13 +35,15 @@
                                                 {% if i == 0 %}
 
                                                     {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
+                                                    {% set alt = image.alt %}
+                                                    {% set title = image.title %}
                                                 {% endif %}
                                             {% endif %}
                                             {% set i = i+1 %}
                                         {% endfor %}
                                     {% endif %}
                                     <span>
-                                        <img src="{{ image_path }}" alt="">
+                                        <img src="{{ image_path }}" alt="{{ alt }}" title="{{ title }}">
                                     </span>
                                 </div>
                             </div>
@@ -55,9 +63,9 @@
                         <p>Vous pouvez joindre {{ article.name }} par téléphone</p>
                         {{ include('app/content/button_caller.html.twig') }}
                         {% else %}
-                    <h2 class="pi-weight-600">
+                    <h1 class="pi-weight-600">
                         {{ article.name | capitalize }}
-                    </h2>
+                    </h1>
                     {% endif %}
                     {{ article.content | raw }}
 
