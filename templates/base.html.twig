@@ -23,8 +23,10 @@
     {% endblock %}
 </head>
 <body>
+<div id="fb-root"></div>
 {% set route = app.request.attributes.get("_route") %}
 {% block body %}
+
     {% set categories = render(controller("App\\Controller\\AppController::getCategories")) | json_decode%}
     {% block header %}
         <div id="pi-all">

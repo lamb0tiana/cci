@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 class ArticleController extends AbstractController
 {
     private $em;
@@ -27,7 +29,15 @@ class ArticleController extends AbstractController
      */
     public function categorie(Request $request, Categorie $categorie = null, Article $article = null)
     {
+//        dd($request->attributes->get("_route"));
+        $link = $this->generateUrl(
+            $request->attributes->get("_route"), [
+            'route'=>$request->attributes->get("_route_params")
+        ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
         if(!$categorie || !$article) return $this->redirectToRoute("home");
+//dd($link);
         return $this->render("app/content/article.html.twig", ["categorie" => $categorie,"article" => $article]);
     }
 

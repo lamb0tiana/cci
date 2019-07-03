@@ -1,5 +1,27 @@
 {% extends "base.html.twig" %}
-{% block title %}{{ article.metadata ? article.metadata.title }}{% endblock %}
+{% set route = app.request.attributes.get("_route") %}
+{% set params = app.request.attributes.get("_route_params") %}
+{% set current_url = url(route,params) %}
+{% set meta_title = article.metadata ? article.metadata.title %}
+{% set meta_description = article.metadata ? article.metadata.description %}
+{% set image_path = asset('assets/img_external/gallery/blog-1.jpg') %}
+{% set alt = "picture.png" %}
+{% set title = "article" %}
+{% if article.images %}
+    {% set i = 0 %}
+    {% for image in article.images %}
+        {% if file_exists(asset('/images/articles/'~ image.filename)) %}
+            {% if i == 0 %}
+
+                {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
+                {% set alt = image.alt %}
+                {% set title = image.title %}
+            {% endif %}
+        {% endif %}
+        {% set i = i+1 %}
+    {% endfor %}
+{% endif %}
+{% block title %}{{ meta_title }}{% endblock %}
 {% block stylesheets %}
 {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}"/>
@@ -7,7 +29,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cartouche.css') }}"/>
 {% endblock %}
 {% block metadata %}
-    <meta name="description" content="{{ article.metadata ? article.metadata.description }}">
+    <meta name="description" content="{{ meta_description }}">
+    <meta property="og:url" content="{{ current_url }}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ meta_title }}" />
+    <meta property="og:description"   content="{{ meta_description }}" />
+    <meta property="og:image"         content="{{ image_path }}" />
 {% endblock %}
 {% block content %}
 
@@ -25,23 +52,6 @@
                             <!-- Slide -->
                             <div class="pi-slide">
                                 <div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-with-overlay">
-                                    {% set image_path = asset('assets/img_external/gallery/blog-1.jpg') %}
-                                    {% set alt = "picture.png" %}
-                                    {% set title = "article" %}
-                                    {% if article.images %}
-                                        {% set i = 0 %}
-                                        {% for image in article.images %}
-                                            {% if file_exists(asset('/images/articles/'~ image.filename)) %}
-                                                {% if i == 0 %}
-
-                                                    {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
-                                                    {% set alt = image.alt %}
-                                                    {% set title = image.title %}
-                                                {% endif %}
-                                            {% endif %}
-                                            {% set i = i+1 %}
-                                        {% endfor %}
-                                    {% endif %}
                                     <span>
                                         <img src="{{ image_path }}" alt="{{ alt }}" title="{{ title }}">
                                     </span>
@@ -68,7 +78,10 @@
                     </h1>
                     {% endif %}
                     {{ article.content | raw }}
-
+                  <div class="fb-share-button"
+                    data-href="{{ current_url }}"
+                    data-layout="button_count">
+                  </div>
 
                 </div>
 
@@ -96,4 +109,15 @@
 
         </div>
     </div>
+
+{% endblock %}
+        {% block javascripts %}
+{{ parent() }}
+          <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 {% endblock %}
