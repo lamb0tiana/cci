@@ -9,10 +9,10 @@ liip_imagine:
 
     detail_slider:
       filters:
-        crop:
+        thumbnail:
           # set the thumbnail size to "32x32" pixels
           size: [768, 274]
-          #mode: outbound
+          mode: outbound
     bo_thumb:
       filters:
         thumbnail:
