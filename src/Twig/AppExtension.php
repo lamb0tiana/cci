@@ -20,7 +20,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFilter('json_decode', [$this, 'json_decode']),
-            new TwigFilter('filter', [$this,'filter']),
+//            new TwigFilter('filter', [$this,'filter']),
             new TwigFilter('str_repeat', [$this,'str_repeat'])
         ];
     }
