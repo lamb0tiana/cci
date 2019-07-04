@@ -49,7 +49,7 @@ easy_admin:
                 - { property: 'metadata', type: 'App\Form\MetaDataType' }
                 - { property: 'content', type: 'fos_ckeditor' }
                 - { property: 'categories', type: 'easyadmin_autocomplete', type_options: { mapped: false, class: 'App\Entity\Categorie', multiple: true} }
-                - { property: 'images', type: 'collection', type_options: { entry_type: 'App\Form\ImageType' , by_reference: false,block_name: 'images_collection'}}
+                - { property: 'images', type: 'collection', type_options: { 'label' : 'Image (min 500px *500px)', entry_type: 'App\Form\ImageType' , by_reference: false,block_name: 'images_collection'}}
 
             edit:
                 fields:
