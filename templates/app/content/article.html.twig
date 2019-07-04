@@ -13,7 +13,7 @@
         {% if file_exists(asset('/images/articles/'~ image.filename)) %}
             {% if i == 0 %}
 
-                {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("home_slider") %}
+                {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
                 {% set alt = image.alt %}
                 {% set title = image.title %}
             {% endif %}
