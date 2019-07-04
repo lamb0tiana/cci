@@ -7,8 +7,13 @@
             {% for k, image in form.children %}
                 {% set image_path = 'images/articles/'~image.vars.value.filename %}
                 {% set display_class = image_path ? : "d-none" %}
+{#                {{ dump( file_get_contents(image.children.imageFile.vars["data"]["file"].pathname ) )}}
+                <img src="{{ image.children.imageFile.vars["data"]["file"].pathname }}" alt="">#}
                 <div class="form-group  field-image">
+                    {{ form_errors(image.children.imageFile) }}
+                    {% if image.vars.value.filename %}
                     <img id="img_preview_{{ k }}" src="{{ asset(image_path) | imagine_filter('bo_thumb')}}" alt="" width="200" height="200">
+                    {% endif %}
                     <div class="btn btn-secondary input-file-container">
                     <label for="{{ image.children.imageFile.children.file.vars.id }}" class="custom-file-label">
                         <i class="fa fa-upload">Choisir fichier</i>
@@ -18,6 +23,7 @@
                     </div>
                 </div>
                 <div class="" id="meta_{{ k }}">
+                    {{ form_errors(image.children.alt) }}
                 <label for="alt_{{ k }}">alternative texte</label>
                 <input id="alt_{{ k }}" name="{{ image.children.alt.vars.full_name }}" value="{{ image.children.alt.vars.value }}" type="text" class="form-control {{ display_class }}" placeholder="alternative texte">
                 <label for="title_{{ k }}">title texte</label>

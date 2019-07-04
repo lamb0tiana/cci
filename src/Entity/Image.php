@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -28,7 +28,12 @@ class Image
 
     /**
      * @var File
-     *
+     * @Assert\Image(
+     *     minWidth="500",
+     *     minHeight="500",
+     *     minWidthMessage="largeur minimal 500px",
+     *     minHeightMessage="hauteur minimal 500px"
+     * )
      * @Vich\UploadableField(mapping="article_images", fileNameProperty="filename")
      */
     private $imageFile;
