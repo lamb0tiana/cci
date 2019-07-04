@@ -13,7 +13,7 @@
         {% if file_exists(asset('/images/articles/'~ image.filename)) %}
             {% if i == 0 %}
 
-                {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("detail_slider") %}
+                {% set image_path = asset('/images/articles/'~ image.filename) | imagine_filter("home_slider") %}
                 {% set alt = image.alt %}
                 {% set title = image.title %}
             {% endif %}
@@ -35,6 +35,11 @@
     <meta property="og:title" content="{{ meta_title }}" />
     <meta property="og:description"   content="{{ meta_description }}" />
     <meta property="og:image"         content="{{ image_path }}" />
+    <!--<meta property="og:image"         content="https://comment-contacter.info/5d1c9305adb4c637086873.jpg" />-->
+     <meta property="og:image:width" content="400" />
+     <meta property="og:image:height" content="400" />
+      <meta property="fb:app_id" content="345118939490478" />
+
 {% endblock %}
 {% block content %}
 
@@ -117,7 +122,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    js.src = "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 {% endblock %}
