@@ -4,7 +4,8 @@ fos_ck_editor:
     configs:
         base_config:
             toolbar:
-            - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link','Format','Font','FontSize'] }
+            - { name: "styles", items: ['Bold', 'Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat', 'BulletedList', 'Link','Format','Font','FontSize'] }
+#            - { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] }
             - { name: 'clipboard',   items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] }
             - { name: 'colors',      items: [ 'TextColor','BGColor' ] }
             - { name: 'tools',       items: [ 'Maximize', 'ShowBlocks' ] }

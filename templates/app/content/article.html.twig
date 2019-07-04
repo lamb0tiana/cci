@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/loading-btn.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/cartouche.css') }}"/>
+    <!-- CSS -->
+<link rel="stylesheet" href="{{ asset('bundles/foscomment/css/comments.css') }}" type="text/css" />
 {% endblock %}
 {% block metadata %}
     <meta name="description" content="{{ meta_description }}">
@@ -84,10 +86,12 @@
                     </h1>
                     {% endif %}
                     {{ article.content | raw }}
+
                   <div class="fb-share-button"
                     data-href="{{ current_url }}"
                     data-layout="button_count">
                   </div>
+                    {% include '@FOSComment/Thread/async.html.twig' with {'id': article.id} %}
 
                 </div>
 
@@ -115,7 +119,6 @@
 
         </div>
     </div>
-
 {% endblock %}
         {% block javascripts %}
 {{ parent() }}
