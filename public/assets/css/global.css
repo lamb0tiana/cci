@@ -3593,7 +3593,6 @@ iframe[src="about:blank"] {
 }
 .pi-row-block {
   display: inline-block;
-  margin: 0 10px;
   float: left;
   line-height: 1em;
   vertical-align: top;
@@ -4172,12 +4171,14 @@ iframe[src="about:blank"] {
   opacity: 1;
 }
 .pi-simple-menu > li > a {
-  padding: 0 15px;
+  padding: 0 5px;
 }
 .pi-simple-menu > li > a span {
   display: inline-block;
   position: relative;
   padding: 0;
+  font-weight: bold;
+  font-size: 15px;
 }
 .pi-simple-menu > li > .pi-submenu {
   left: 15px;
@@ -5111,22 +5112,22 @@ iframe[src="about:blank"] {
   color: #18ba60;
 }
 .pi-section-white .pi-simple-menu > li:hover > a {
-  color: #18ba60;
+  color: #ffa800;
 }
 .pi-section-white .pi-simple-menu > li.active {
   color: #18ba60;
 }
 .pi-section-white .pi-simple-menu > li.active > a {
-  color: #18ba60;
+  color: #ffa800;
 }
 .pi-section-white .pi-simple-menu.pi-has-hover-border > li > a > span:before {
   border-color: transparent;
 }
 .pi-section-white .pi-simple-menu.pi-has-hover-border > li:hover > a > span:before {
-  border-color: #18ba60;
+  border-color: #ffa800;
 }
 .pi-section-white .pi-simple-menu.pi-has-hover-border > li.active > a > span:before {
-  border-color: #18ba60;
+  border-color: #ffa800;
 }
 .pi-section-white .pi-simple-menu.pi-has-hover-border > li.active:hover > a > span:before {
   border-color: #18ba60;
