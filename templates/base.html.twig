@@ -85,5 +85,7 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 {% endblock %}
+    <div id="pop_up_call_auth" class="pop_up_call_auth" title >  {{ render(controller('App\\Controller\\SecurityController:identification', {'from': 'forwarded'}))}}</div>
+
 </body>
 </html>

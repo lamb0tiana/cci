@@ -119,6 +119,7 @@
 
         </div>
     </div>
+                    <div id="pop_up_call_auth" class="pop_up_call_auth" ><div class="close_pop_container"><div class="close_pop_call_auth"> x </div></div> {{ render(controller('App\\Controller\\SecurityController:identification', {'from': 'forwarded'}))}}</div>
 {% endblock %}
         {% block javascripts %}
 {{ parent() }}
